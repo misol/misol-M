@@ -1,0 +1,19 @@
+<load target="js/mboard.js" />
+<load target="css/css.css" />
+<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/49314/XEIconv10/style-cf.css" />
+
+<div class="bd">
+	<div class="ms_hx">
+		<h2 class="ms ms_bred ms_font_l"><i class="xe-wastebasket ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
+		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_m"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
+	</div>
+	<form action="./" method="get" class="ff ms_font_m" onsubmit="return procFilter(this, delete_document)">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="page" value="{$page}" />
+		<input type="hidden" name="document_srl" value="{$document_srl}" />
+		<label>{$lang->confirm_delete}</label>
+		<div class="ms_bxa_90">
+			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_delete}</button>
+		</div>
+	</form>
+</div>

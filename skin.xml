@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">misol M</title>
+	<title xml:lang="en">misol M</title>
+	<description xml:lang="ko">
+		misol's mobile board skin.
+		XE 게시판 기본 스킨을 뼈대로, 평소에 바라던 부분에 대해 수정을 하여 사용성을 높인 모바일 게시판 스킨입니다.
+	</description>
+	<description xml:lang="en">
+		misol's mobile board skin.
+		Based on the basic mobile skin, misol enhance the usability and shape.
+	</description>
+	<version>0.2</version>
+	<date>2015-01-04</date>
+	<author email_address="misol.kr@gmail.com">
+		<name xml:lang="ko">김민수(misol)</name>
+		<name xml:lang="en">MinSoo Kim(misol)</name>
+	</author>
+	<author email_address="developers@xpressengine.com" link="http://www.xpressengine.com/">
+		<name xml:lang="ko">NAVER</name>
+		<name xml:lang="en">NAVER</name>
+	</author>
+</skin>

@@ -1,0 +1,46 @@
+<load target="js/mboard.js" />
+<load target="css/css.css" />
+<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/49314/XEIconv10/style-cf.css" />
+<div class="bd">
+	<div class="ms_hx">
+		<h2 class="ms ms_bred ms_font_l"><i class="xe-wastebasket ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
+		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_m"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
+	</div>
+	<div class="rd_bt_re" cond="$oComment->isExists()">
+		<ul>
+			<li class="fbItem" id="comment_{$oComment->comment_srl}">
+				<div class="ms_cmt_top">
+					<div class="fbMeta">
+						<img cond="$oComment->getProfileImage()" src="{$oComment->getProfileImage()}" alt="Profile" class="profile" />
+						<i cond="!$oComment->getProfileImage()" class="xe-man profile"></i>
+						<span cond="!$oComment->getProfileImage()" class="profile"></span>
+						<h3 class="author ms_font_xs">
+							<a cond="!$oComment->member_srl && $oComment->homepage" href="{$oComment->getHomepageUrl()}"><i class="xe-link"></i> {$oComment->getNickName()}</a>
+							<strong cond="!$oComment->member_srl && !$oComment->homepage"><i class="xe-user"></i> {$oComment->getNickName()}</strong>
+							<a cond="$oComment->member_srl" href="#popup_menu_area" class="member_{$oComment->member_srl}" onclick="return false"><i class="xe-user"></i> {$oComment->getNickName()}</a>
+						</h3>
+					</div>
+					<div class="ms_cmt_cont">
+						{$oComment->getContent(false)}
+					</div>
+				</div>
+				<div class="ms_cmt_bottom">
+					<div class="ms_btm_meta">
+						<p class="time ms_font_xs"><i class="xe-time-point"></i> {$oComment->getRegdate('y.m.d H:i')}</p>
+						<span class="vote" cond="$oComment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$oComment->get('voted_count')?$oComment->get('voted_count'):0}</i></span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<form action="./" method="get" class="ff ms_font_m" onsubmit="return procFilter(this, delete_comment)">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="page" value="{$page}" />
+		<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
+		<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
+		<label>{$lang->confirm_delete}</label>
+		<div class="ms_bxa_90">
+			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_delete}</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,38 @@
+<load target="css/css.css" />
+<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/49314/XEIconv10/style-cf.css" />
+<div class="bd">
+	<div class="ms_hx">
+		<h2 class="ms ms_bred ms_font_l"><a href="{getUrl('page','','act','dispBoardCategory','')}" class="ms_a_deco_none ms_bred"><i class="xe-tree ms_vertical_align"></i> {$lang->category}</a></h2>
+		<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','', 'act','')}" class="write ms_btn ms_font_m"><i class="xe-list-ul ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
+	</div>
+	<ul class="gn">
+		{@ $start = true }
+		{@ $depth = 0 }
+		<!--@foreach($category_list as $category)-->
+		<!--@if(!$start && $category->depth == $depth)-->
+		</li>
+		<!--@end-->
+		<!--@if($category->depth > $depth)--> <!--more depth-->
+		<ul>
+		<!--@else-->
+		<!--@while($category->depth < $depth)-->
+		</li>
+		</ul>
+		{@ $depth -= 1}
+		<!--@end-->
+		<!--@endif-->
+			<li><a href="{getUrl('act','','category',$category->category_srl)}">{$category->title} <em> {$category->document_count}</em></a>
+			{@ $start = false }
+			{@ $depth = $category->depth }
+		<!--@endforeach-->
+		<!--@while($depth > 0)-->
+		</li>
+		</ul>
+		{@ $depth -= 1}
+		<!--@end-->
+		</li>
+	</ul>
+	<div class="btm_tools">
+		<a href="{getUrl('','vid',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_s"><i class="xe-list-ul ms_vertical_align">{$lang->cmd_list}</i></a>
+	</div>
+</div>

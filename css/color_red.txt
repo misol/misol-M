@@ -1,0 +1,14 @@
+=색상 선택=
+
+==Red - primary==
+500    #f44336
+
+100    #ffcdd2
+500    #f44336
+700    #d32f2f
+
+==Blue - secondary==
+A200    #448aff
+
+A100    #82b1ff
+A400    #2979ff
