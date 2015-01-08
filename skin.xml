@@ -10,8 +10,8 @@
 		misol's mobile board skin.
 		Based on the basic mobile skin, misol enhance the usability and shape.
 	</description>
-	<version>0.2</version>
-	<date>2015-01-05</date>
+	<version>0.9</version>
+	<date>2015-01-09</date>
 	<author email_address="misol.kr@gmail.com">
 		<name xml:lang="ko">김민수(misol)</name>
 		<name xml:lang="en">MinSoo Kim(misol)</name>
@@ -20,4 +20,54 @@
 		<name xml:lang="ko">NAVER</name>
 		<name xml:lang="en">NAVER</name>
 	</author>
+	<license>LGPL v3</license>
+	<extra_vars>
+		<var name="title_image" type="select">
+			<title xml:lang="ko">색</title>
+			<title xml:lang="en">Colors</title>
+			<description xml:lang="ko">붉은색, 크림슨색, 파란색, 녹색 등 여러가지 계열을 선택할 수 있습니다.</description>
+			<description xml:lang="en">Some types of colors like red, blue, green and some others.</description>
+
+			<options value="red">
+				<title xml:lang="ko">붉은색(기본)</title>
+				<title xml:lang="en">Red(default)</title>
+			</options>
+			<options value="crimson">
+				<title xml:lang="ko">크림슨</title>
+				<title xml:lang="en">Crimson</title>
+			</options>
+			<options value="purple">
+				<title xml:lang="ko">보라색</title>
+				<title xml:lang="en">Purple</title>
+			</options>
+			<options value="deeppurple">
+				<title xml:lang="ko">진보라색</title>
+				<title xml:lang="en">Purple</title>
+			</options>
+			<options value="blue">
+				<title xml:lang="ko">파란색</title>
+				<title xml:lang="en">Blue</title>
+			</options>
+			<options value="green">
+				<title xml:lang="ko">녹색</title>
+				<title xml:lang="en">Green</title>
+			</options>
+			<options value="mint">
+				<title xml:lang="ko">민트</title>
+				<title xml:lang="en">Mint</title>
+			</options>
+			<options value="brown">
+				<title xml:lang="ko">갈색</title>
+				<title xml:lang="en">Brown</title>
+			</options>
+			<options value="grey">
+				<title xml:lang="ko">회색</title>
+				<title xml:lang="en">Grey</title>
+			</options>
+			<options value="fforange">
+				<title xml:lang="ko">파이어폭스 오렌지</title>
+				<title xml:lang="en">Firefox Orange</title>
+			</options>
+		</var>
+	</extra_vars>
 </skin>

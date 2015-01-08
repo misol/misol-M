@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="fontsize_expand">
+		<value xml:lang="ko"><![CDATA[확대]]></value>
+		<value xml:lang="en"><![CDATA[Bigger font]]></value>
+		<value xml:lang="jp"><![CDATA[Bigger font]]></value>
+		<value xml:lang="de"><![CDATA[Bigger font]]></value>
+	</item>
+	<item name="fontsize_reduce">
+		<value xml:lang="ko"><![CDATA[축소]]></value>
+		<value xml:lang="en"><![CDATA[Smaller font]]></value>
+		<value xml:lang="jp"><![CDATA[Smaller font]]></value>
+		<value xml:lang="de"><![CDATA[Smaller font]]></value>
+	</item>
+	<item name="facebook">
+		<value xml:lang="ko"><![CDATA[페이스북]]></value>
+		<value xml:lang="en"><![CDATA[Facebook]]></value>
+		<value xml:lang="jp"><![CDATA[Facebook]]></value>
+		<value xml:lang="de"><![CDATA[Facebook]]></value>
+	</item>
+	<item name="twitter">
+		<value xml:lang="ko"><![CDATA[트위터]]></value>
+		<value xml:lang="en"><![CDATA[Twitter]]></value>
+		<value xml:lang="jp"><![CDATA[Twitter]]></value>
+		<value xml:lang="de"><![CDATA[Twitter]]></value>
+	</item>
+</lang>

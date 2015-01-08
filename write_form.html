@@ -1,6 +1,5 @@
-<load target="css/css.css" />
+<include target="_loadCss.html" />
 <load target="js/mboard.js" />
-<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/49314/XEIconv10/style-cf.css" />
 <div class="bd">
 	<div class="ms_hx">
 		<h2 class="ms ms_bred ms_font_l"><span class="ms_vertical_align"><i class="xe-pen"></i> {$lang->cmd_write}</span></h2>
@@ -57,7 +56,7 @@
 			</li>
 			<li>
 				<label for="uSite">{$lang->homepage}</label>
-				<input name="homepage" type="url" id="uSite" value="" />
+				<input name="homepage" type="url" id="uSite" placeholder="http://" />
 			</li>
 			<!--@endif-->
 			<li>

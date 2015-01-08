@@ -1,13 +1,13 @@
+{@Context::loadLang(_XE_PATH_ . "modules/board/m.skins/ms_m_board/lang");}
+<load target="/common/js/jquery.js" />
 <div class="ms_hx">
 	<h2 class="ms ms_bred ms_font_l"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><i class="xe-paper ms_vertical_align"></i> {$oDocument->getTitle()}</a></h2>
 	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_m"><i class="xe-list-ul ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
 	<span class="ex ms_font_xs">
-		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xe-user"></i> {$oDocument->getNickName()}</a><a href="#comment" class="com ms_a_deco_none"><i class="xe-message-left-list"></i> {$oDocument->getCommentCount()}</a><span class="time"><i class="xe-time-point"></i> {$oDocument->getRegdate("y.m.d H:i")}</span>
+		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xe-user ms_tred"></i> {$oDocument->getNickName()}</a><span class="time"><i class="xe-time-point ms_tred"></i> {$oDocument->getRegdate("m.d H:i")}</span><a href="#" onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*1.25 + msFontUnit;}); return false;" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-expand ms_tred"></i> {$lang->fontsize_expand}</a><a onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*0.8 + msFontUnit;}); return false;" href="#" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-reduce ms_tred"></i> {$lang->fontsize_reduce}</a>
 	</span>
 </div>
-<div class="ms_magnifier">
-	<!--todo: jQuery 등으로 .xe-content 글자 크기 크게/작게 조절하는 버튼 2개 넣기-->
-</div>
+
 <div class="ms_co">
 	<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
 	<form action="./" method="get" class="ff" onsubmit="return procFilter(this, input_password)">
@@ -48,7 +48,7 @@
 		<ul class="rd_bt_rg">
 			<!--@foreach($uploaded_list as $key => $file)-->
 				{@ $i++;}
-				<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
+				<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
 			<!--@end-->
 		</ul>
 	</div>
@@ -56,8 +56,8 @@
 	<div class="ms ms_sns">
 		<h3>{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
 		<ul class="rd_bt_rg">
-			<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook"> Facebook</i></a></li>
-			<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter"> Twitter</i></a></li>
+			<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook}</a></li>
+			<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter}</a></li>
 		</ul>
 	</div>
 </div>
@@ -88,16 +88,16 @@
 	<h3>{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
 	<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xe-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
 	<ul>
-		<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem" style="padding-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="padding-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
+		<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
 			<div class="ms_cmt_top">
 				<div class="fbMeta">
 					<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
 					<i cond="!$comment->getProfileImage()" class="xe-man profile"></i>
 					<span cond="!$comment->getProfileImage()" class="profile"></span>
 					<h3 class="author ms_font_xs">
-						<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}"><i class="xe-link"></i> {$comment->getNickName()}</a>
-						<strong cond="!$comment->member_srl && !$comment->homepage"><i class="xe-user"></i> {$comment->getNickName()}</strong>
-						<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false"><i class="xe-user"></i> {$comment->getNickName()}</a>
+						<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}">{$comment->getNickName()}</a>
+						<strong cond="!$comment->member_srl && !$comment->homepage">{$comment->getNickName()}</strong>
+						<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
 					</h3>
 				</div>
 				<div class="ms_cmt_cont">
@@ -166,7 +166,7 @@
 			</li>
 			<li>
 				<label for="uSite">{$lang->homepage}</label>
-				<input name="homepage" type="url" id="uSite" placeholder="http://www.xpressengine.com" />
+				<input name="homepage" type="url" id="uSite" placeholder="http://" />
 			</li>
 			<!--@endif-->
 		</ul>

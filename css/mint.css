@@ -24,35 +24,35 @@ h3.ms{
 	padding:0px 10px;
 	height: 40px;
 	min-width:40px;
-	color:#f44336;
+	color:#3eb489;
 	text-decoration:none;
 	text-align:center;
 }
 .ms_tred{
-	color: #f44336;
+	color: #3eb489;
 }
 .ms_bred, .ms_bred *{
-	background-color: #f44336;
+	background-color: #3eb489;
 	color:#fff;
 }
 .ms_bred50, .ms_bred50 *{
-	background-color: #ffebee;
+	background-color: #71ceac;
 	color: rgba(0, 0, 0, 0.87);
 }
 .ms_bred100, .ms_bred100 *{
-	background-color: #ffcdd2;
+	background-color: #5ec7a1;
 	color: rgba(0, 0, 0, 0.87);
 }
 .ms_bred400, .ms_bred400 *{
-	background-color: #ef5350;
+	background-color: #4bc196;
 	color: rgba(0, 0, 0, 0.87);
 }
 .ms_bredA400, .ms_bredA400 *{
-	background-color: #ff1744;
+	background-color: #3eb46c;
 	color: #fff;
 }
 .ms_bred700, .ms_bred700 *,.ms_bredA700, .ms_bredA700 *{
-	background-color: #d32f2f;
+	background-color: #2a7b5e;
 	color: #fff;
 }
 .ms_a_deco_none{
@@ -98,7 +98,7 @@ h3.ms{
 	font-weight:bold;
 }
 .ms_bxa_90>.ms_bredA700{
-	border-color:#f44336;
+	border-color:#3eb489;
 }
 .ms_bxa_90{
 	padding:0px 10px;
@@ -170,7 +170,7 @@ h3.ms{
 }
 .lt .notice {
 	display: inline-block;
-	background: #f44336;
+	background: #3eb489;
 	font-weight: bold;
 	color: #fff;
 	padding: 4px;
@@ -599,13 +599,13 @@ h3.ms{
 	padding-left: 60px;
 }
 .gn em {
-	color: #f44336;
+	color: #3eb489;
 	font-size: 12px;
     font-style: normal;
 }
 .gn em:before {
 	content: "\e818 ";
 	font-family: XEIcon;
-	color: #f44336;
+	color: #3eb489;
 	font-size: 12px;
 }

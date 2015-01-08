@@ -1,5 +1,22 @@
 =색상 선택=
 
+==Crimson Pantone Coated 202 C==
+main    #862633
+
+bright    #c2374a
+main    #862633
+dark    #72202b
+
+==Mint==
+main    #3eb489
+
+bright    #71ceac
+main    #3eb489
+dark    #2a7b5e
+
+=Android Guideline colors=
+http://www.google.com/design/spec/style/color.html#color-color-palette
+
 ==Red - primary==
 500    #f44336
 
@@ -12,3 +29,18 @@ A200    #448aff
 
 A100    #82b1ff
 A400    #2979ff
+
+
+==Blue==
+500    #2196f3
+
+100    #bbdefb
+500    #2196f3
+700    #1976d2
+
+==Green==
+500    #4caf50
+
+100    #c8e6c9
+500    #4caf50
+700    #388e3c
