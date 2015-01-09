@@ -1,3 +1,4 @@
+{@Context::loadLang(_XE_PATH_ . "modules/board/m.skins/ms_m_board/lang");}
 <div class="ms_hx">
 	<h2 class="ms ms_bred ms_font_l"><a href="{getUrl('','vid',$vid,'mid',$mid)}" class="ms_a_deco_none ms_bred"><i class="xe-list-ul ms_vertical_align"></i> {$module_info->browser_title}</a></h2>
 	<div class="ms_pa_r0"><a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write ms_btn ms_font_m"><i class="xe-pen ms_vertical_align"></i><span class="ms_text_minus_indent">{$lang->cmd_write}</span></a></div>
@@ -16,7 +17,7 @@
 	<li>
 		<a href="{getUrl('document_srl', $document->document_srl)}">
 			<span class="ms_blist" style="padding-right: 55px"|cond="$document->getCommentCount()">
-				<span class="title ms_font_s"><span class="notice"><i class="xe-notice"></i><span class="ms_text_minus_indent">{$lang->notice}</span></span> <strong>{$document->getTitle($module_info->subject_cut_size)}</strong></span>
+				<span class="title ms_font_s"><span class="notice"><i class="xe-star"|cond="$document->get('hot_document')" class="xe-notice"|cond="!$document->get('hot_document')"></i><span class="ms_text_minus_indent"><!--@if($document->get('hot_document'))-->{$lang->ms_hot}<!--@else-->{$lang->notice}<!--@end--></span></span> <strong>{$document->getTitle($module_info->subject_cut_size)}</strong></span>
 				<span class="auth ms_font_xs"><span class="time"><i class="xe-time-point"></i> <!--@if($time_gap < 60)-->{$min_gap}<!--@elseif($time_gap < 3600)-->{$mins_gap}<!--@elseif($thour_gap < 2)-->{$hour_gap}<!--@elseif($thour_gap < 20)-->{$hours_gap}<!--@else-->{$document->getRegDate("Y.m.d")}<!--@end--></span><!--@if($module_info->use_category == "Y" && $document->get('category_srl'))--><span class="cat"><i class="xe-tree"></i> {$category_list[$document->get('category_srl')]->title}</span><!--@end--><span class="auth"><i class="xe-user"></i> <strong>{$document->getNickName()}</strong></span></span> 
 			</span>
 			<span class="ms_pa_r0" cond="$document->getCommentCount()">

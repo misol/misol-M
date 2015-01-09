@@ -24,4 +24,10 @@
 		<value xml:lang="jp"><![CDATA[Twitter]]></value>
 		<value xml:lang="de"><![CDATA[Twitter]]></value>
 	</item>
+	<item name="ms_hot">
+		<value xml:lang="ko"><![CDATA[인기]]></value>
+		<value xml:lang="en"><![CDATA[Hot]]></value>
+		<value xml:lang="jp"><![CDATA[Hot]]></value>
+		<value xml:lang="de"><![CDATA[Hot]]></value>
+	</item>
 </lang>
