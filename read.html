@@ -1,184 +1,167 @@
 {@Context::loadLang(_XE_PATH_ . "modules/board/m.skins/ms_m_board/lang");}
 <load target="/common/js/jquery.js" />
 <div class="ms_hx">
-	<h2 class="ms ms_bred ms_font_l"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><i class="xe-paper ms_vertical_align"></i> {$oDocument->getTitle()}</a></h2>
-	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_m"><i class="xe-list-ul ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
+	<h2 class="ms ms_bred ms_font_xl"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><!--@if($oDocument->isSecret() && !$oDocument->isGranted())--><i class="xe-lock ms_vertical_align"></i> {$lang->msg_is_secret}<!--@else--><i class="xe-leaf ms_vertical_align" alt="{$lang->title}"></i> {$oDocument->getTitle()}<!--@end--></a></h2>
+	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_l"><i class="xe-evergreens ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
 	<span class="ex ms_font_xs">
-		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xe-user ms_tred"></i> {$oDocument->getNickName()}</a><span class="time"><i class="xe-time-point ms_tred"></i> {$oDocument->getRegdate("m.d H:i")}</span><a href="#" onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*1.25 + msFontUnit;}); return false;" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-expand ms_tred"></i> {$lang->fontsize_expand}</a><a onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*0.8 + msFontUnit;}); return false;" href="#" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-reduce ms_tred"></i> {$lang->fontsize_reduce}</a>
+		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xe-user ms_tred" alt="{$lang->nick_name}"></i> {$oDocument->getNickName()}</a><span class="time"><i class="xe-time-point ms_tred" alt="{$lang->regdate}"></i> {$oDocument->getRegdate("m.d H:i")}</span><a href="#" onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*1.25 + msFontUnit;}); return false;" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-expand ms_tred"></i> {$lang->fontsize_expand}</a><a onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*0.8 + msFontUnit;}); return false;" href="#" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-reduce ms_tred"></i> {$lang->fontsize_reduce}</a>
 	</span>
 </div>
-
-<div class="ms_co">
-	<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
-	<form action="./" method="get" class="ff" onsubmit="return procFilter(this, input_password)">
+<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+	<form action="./" method="get" class="ff ms_font_m" id="secret_form" onsubmit="return procFilter(this, input_password)">
 	<input type="hidden" name="mid" value="{$mid}" />
 	<input type="hidden" name="page" value="{$page}" />
 	<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
-		<label for="cpw">{$lang->msg_is_secret}</label>
-		<input type="password" name="password" id="cpw" />
-		<input type="submit" value="{$lang->cmd_input}" class="bn dark" />
+		<div class="ms_bxa_90">
+			<label for="cpw" form="secret_form"><i class="xe-lock ms_tred"></i> {$lang->password}</label>
+			<input type="password" name="password" id="cpw" />
+			<p class="ms_font_s">{$lang->msg_input_password}</p>
+			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_input}</button>
+		</div>
 	</form>
-	<!--@else-->
-	<!--@if($oDocument->isExtraVarsExists())-->
-		{@ $_extra_vars = $oDocument->getExtraVars(); }
-		<dl class="xv">
-		<!--@foreach($_extra_vars as $key => $val)-->
-			<dt>{$val->name}</dt>
-			<dd>{$val->getValueHTML()}</dd>
+<!--@else-->
+	<div class="ms_co">
+		<!--@if($oDocument->isExtraVarsExists())-->
+			{@ $_extra_vars = $oDocument->getExtraVars(); }
+			<dl class="xv">
+			<!--@foreach($_extra_vars as $key => $val)-->
+				<dt>{$val->name}</dt>
+				<dd>{$val->getValueHTML()}</dd>
+			<!--@end-->
+			</dl>
 		<!--@end-->
-		</dl>
-	<!--@end-->
-	{$oDocument->getContent(false)}
-	<!--@end-->
-</div>
-<div class="rd_bt">
-	{@ $tag_list = $oDocument->get('tag_list') }
-	<div class="ms_tags ms" cond="count($tag_list)">
-		<h3>{$lang->tag} <i class="xe-tag-lefts"> {count($tag_list)}</i></h3>
-		<div class="rd_bt_rg">
-		<!--@for($i=0;$i<count($tag_list);$i++)-->
-			{@ $tag = $tag_list[$i]; }<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','','cpage','')}" class="tag" rel="tag">{htmlspecialchars($tag)}<block cond="$i!=count($tag_list)-1">, </block></a>
-		<!--@end-->
+		{$oDocument->getContent(false)}
+	</div>
+	<div class="rd_bt">
+		{@ $tag_list = $oDocument->get('tag_list') }
+		<div class="ms_tags ms" cond="count($tag_list)">
+			<h3>{$lang->tag} <i class="xe-tag-lefts"> {count($tag_list)}</i></h3>
+			<div class="rd_bt_rg">
+			<!--@for($i=0;$i<count($tag_list);$i++)-->
+				{@ $tag = $tag_list[$i]; }<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','','cpage','')}" class="tag" rel="tag">{htmlspecialchars($tag)}<block cond="$i!=count($tag_list)-1">, </block></a>
+			<!--@end-->
+			</div>
+		</div>
+		<!--@if($oDocument->hasUploadedFiles())-->
+		{@ $uploaded_list = $oDocument->getUploadedFiles(); $i=0; }
+		<div class="ms_files ms" cond="count($uploaded_list)">
+			<h3>{$lang->uploaded_file} <i class="xe-clip"> {count($uploaded_list)}</i></h3>
+			<ul class="rd_bt_rg">
+				<!--@foreach($uploaded_list as $key => $file)-->
+					{@ $i++;}
+					<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
+				<!--@end-->
+			</ul>
+		</div>
+		<!--@endif-->
+		<div class="ms ms_sns">
+			<h3>{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
+			<ul class="rd_bt_rg">
+				<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook}</a></li>
+				<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter}</a></li>
+			</ul>
 		</div>
 	</div>
-	<!--@if($oDocument->hasUploadedFiles())-->
-	{@ $uploaded_list = $oDocument->getUploadedFiles(); $i=0; }
-	<div class="ms_files ms" cond="count($uploaded_list)">
-		<h3>{$lang->uploaded_file} <i class="xe-clip"> {count($uploaded_list)}</i></h3>
-		<ul class="rd_bt_rg">
-			<!--@foreach($uploaded_list as $key => $file)-->
-				{@ $i++;}
-				<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
-			<!--@end-->
+	<div id="comment"></div>
+	<!--@if($oDocument->getCommentCount())-->
+	<div class="rd_bt_re">
+		<h3>{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
+		<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xe-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
+		<ul>
+			<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
+				<div class="ms_cmt_top">
+					<div class="fbMeta">
+						<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
+						<i cond="!$comment->getProfileImage()" class="xe-man profile"></i>
+						<span cond="!$comment->getProfileImage()" class="profile"></span>
+						<h3 class="author ms_font_xs">
+							<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}">{$comment->getNickName()}</a>
+							<strong cond="!$comment->member_srl && !$comment->homepage">{$comment->getNickName()}</strong>
+							<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
+						</h3>
+					</div>
+					<div class="ms_cmt_cont">
+						<!--@if(!$comment->isAccessible())-->
+						<form action="./" method="get" class="xe_content ff ms_font_m ms_bxa_90" id="sc{$comment->comment_srl}" onsubmit="return procFilter(this, input_password)">
+							<label for="cpw_{$comment->comment_srl}" form="sc{$comment->comment_srl}"><i class="xe-lock ms_tred"></i> {$lang->password}</label>
+							<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
+							<p class="ms_lh160">{$lang->msg_is_secret}<br />{$lang->msg_input_password}</p>
+							<input type="hidden" name="mid" value="{$mid}" />
+							<input type="hidden" name="page" value="{$page}" />
+							<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
+							<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
+							<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_input}</button>
+						</form>
+						<!--@else-->
+						{$comment->getContent(false)}
+						<!--@end-->
+					</div>
+				</div>
+				<div class="ms_cmt_bottom">
+					<div class="ms_btm_meta">
+						<p class="time ms_font_xs"><i class="xe-time-point"></i> {$comment->getRegdate('y.m.d H:i')}</p>
+						<span class="vote" cond="$comment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$comment->get('voted_count')?$comment->get('voted_count'):0}</i></span>
+					</div>
+					<p class="action">
+						<a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply"><i class="xe-message-right"></i> {$lang->cmd_reply}</a>
+						<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete"><i class="xe-eraser"></i> {$lang->cmd_delete}</a>
+						<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class="xe-cube"></i> {$lang->cmd_comment_do}...</a>
+					</p>
+				</div>
+			</li>
 		</ul>
+		<div class="pn ms_font_m" cond="$oDocument->comment_page_navigation">
+			<!--@if($oDocument->comment_page_navigation->cur_page != 1)-->
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page-1)}#comment" class="prev">{$lang->cmd_prev}</a> 
+			<!--@endif-->
+			<strong>{$oDocument->comment_page_navigation->cur_page} / {$oDocument->comment_page_navigation->last_page}</strong>
+			<!--@if($oDocument->comment_page_navigation->cur_page != $oDocument->comment_page_navigation->last_page)-->
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page+1)}#comment" class="next">{$lang->cmd_next}</a>
+			<!--@endif-->
+		</div>
 	</div>
 	<!--@endif-->
-	<div class="ms ms_sns">
-		<h3>{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
-		<ul class="rd_bt_rg">
-			<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook}</a></li>
-			<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter}</a></li>
-		</ul>
+	<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
+	<div class="rd_bt_re">
+		<h3 id="write_comment"><i class="xe-message-left-ellipsis"></i> {$lang->write_comment}</h3>
+		<form action="./" method="post" class="ff ms_font_m" onsubmit="return procFilter(this, insert_comment);">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<input type="hidden" name="comment_srl" value="" />
+			<ul>
+				<li>
+					<label for="rText">{$lang->comment}</label>
+					<textarea name="content" rows="5" cols="42" id="rText"></textarea>
+				</li>
+				<!--@if(!$is_logged)-->
+				<li>
+					<label for="uName">{$lang->writer}</label>
+					<input name="nick_name" type="text" id="uName" />
+				</li>
+				<li>
+					<label for="uMail">{$lang->email_address}</label>
+					<input name="email_address" type="email" id="uMail" />
+				</li>
+				<li>
+					<label for="uPw">{$lang->password}</label>
+					<input name="password" type="password" id="uPw" />
+				</li>
+				<li>
+					<label for="uSite">{$lang->homepage}</label>
+					<input name="homepage" type="url" id="uSite" placeholder="http://" />
+				</li>
+				<!--@endif-->
+			</ul>
+			<div class="ms_bxa_90">
+				<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_comment_registration}</button>
+			</div>
+		</form>
 	</div>
-</div>
-<!--@if($oDocument->allowTrackback() && $oDocument->getTrackbackCount())-->
-<div class="hx h3">
-	<h3>{$lang->trackback} <em>[{$oDocument->getTrackbackCount()}]</em></h3>
-	<button type="button" class="tg" title="open/close"></button>
-</div>
-<ul class="rp tgo open">
-	{@ $_trackback_list = $oDocument->getTrackbacks() }
-	<!--@foreach($_trackback_list as $key => $val)-->
-	<li>
-		<p>{$val->excerpt}</p>
-		<span class="auth">
-			<em>{htmlspecialchars($val->title)} - {htmlspecialchars($val->blog_name)}</em>
-			<span class="time">{zdate($val->regdate, "Y.m.d")}</span>
-			<!--@if($grant->manager)-->
-			<a href="07_password.html" class="btn de">{$lang->cmd_delete}</a>
-			<!--@endif-->
-		</span>
-	</li>
 	<!--@end-->
-</ul>
-<!--@endif-->
-<div id="comment"></div>
-<!--@if($oDocument->getCommentCount())-->
-<div class="rd_bt_re">
-	<h3>{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
-	<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xe-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
-	<ul>
-		<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
-			<div class="ms_cmt_top">
-				<div class="fbMeta">
-					<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-					<i cond="!$comment->getProfileImage()" class="xe-man profile"></i>
-					<span cond="!$comment->getProfileImage()" class="profile"></span>
-					<h3 class="author ms_font_xs">
-						<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}">{$comment->getNickName()}</a>
-						<strong cond="!$comment->member_srl && !$comment->homepage">{$comment->getNickName()}</strong>
-						<a cond="$comment->member_srl" href="#popup_menu_area" class="member_{$comment->member_srl}" onclick="return false">{$comment->getNickName()}</a>
-					</h3>
-				</div>
-				<div class="ms_cmt_cont">
-					<!--@if(!$comment->isAccessible())-->
-					<form action="./" method="get" class="xe_content" onsubmit="return procFilter(this, input_password)">
-						<p><label for="cpw_{$comment->comment_srl}">{$lang->msg_is_secret} {$lang->msg_input_password}</label></p>
-						<p><input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" /><input type="submit" class="btn" value="{$lang->cmd_input}" /></p>
-						<input type="hidden" name="mid" value="{$mid}" />
-						<input type="hidden" name="page" value="{$page}" />
-						<input type="hidden" name="document_srl" value="{$comment->get('document_srl')}" />
-						<input type="hidden" name="comment_srl" value="{$comment->get('comment_srl')}" />
-					</form>
-					<!--@else-->
-					{$comment->getContent(false)}
-					<!--@end-->
-				</div>
-			</div>
-			<div class="ms_cmt_bottom">
-				<div class="ms_btm_meta">
-					<p class="time ms_font_xs"><i class="xe-time-point"></i> {$comment->getRegdate('y.m.d H:i')}</p>
-					<span class="vote" cond="$comment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$comment->get('voted_count')?$comment->get('voted_count'):0}</i></span>
-				</div>
-				<p class="action">
-					<a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply"><i class="xe-message-right"></i> {$lang->cmd_reply}</a>
-					<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete"><i class="xe-eraser"></i> {$lang->cmd_delete}</a>
-					<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class="xe-cube"></i> {$lang->cmd_comment_do}...</a>
-				</p>
-			</div>
-		</li>
-	</ul>
-	<div class="pn ms_font_m" cond="$oDocument->comment_page_navigation">
-		<!--@if($oDocument->comment_page_navigation->cur_page != 1)-->
-		<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page-1)}#comment" class="prev">{$lang->cmd_prev}</a> 
-		<!--@endif-->
-		<strong>{$oDocument->comment_page_navigation->cur_page} / {$oDocument->comment_page_navigation->last_page}</strong>
-		<!--@if($oDocument->comment_page_navigation->cur_page != $oDocument->comment_page_navigation->last_page)-->
-		<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page+1)}#comment" class="next">{$lang->cmd_next}</a>
-		<!--@endif-->
-	</div>
-</div>
-<!--@endif-->
-<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
-<div class="rd_bt_re">
-	<h3 id="write_comment"><i class="xe-message-left-ellipsis"></i> {$lang->write_comment}</h3>
-	<form action="./" method="post" class="ff ms_font_m" onsubmit="return procFilter(this, insert_comment);">
-		<input type="hidden" name="mid" value="{$mid}" />
-		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
-		<input type="hidden" name="comment_srl" value="" />
-		<ul>
-			<li>
-				<label for="rText">{$lang->comment}</label>
-				<textarea name="content" rows="5" cols="42" id="rText"></textarea>
-			</li>
-			<!--@if(!$is_logged)-->
-			<li>
-				<label for="uName">{$lang->writer}</label>
-				<input name="nick_name" type="text" id="uName" />
-			</li>
-			<li>
-				<label for="uMail">{$lang->email_address}</label>
-				<input name="email_address" type="email" id="uMail" />
-			</li>
-			<li>
-				<label for="uPw">{$lang->password}</label>
-				<input name="password" type="password" id="uPw" />
-			</li>
-			<li>
-				<label for="uSite">{$lang->homepage}</label>
-				<input name="homepage" type="url" id="uSite" placeholder="http://" />
-			</li>
-			<!--@endif-->
-		</ul>
-		<div class="ms_bxa_90">
-			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_comment_registration}</button>
-		</div>
-	</form>
-</div>
 <!--@end-->
 <div class="btm_tools">
-	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_s"><i class="xe-list-ul ms_vertical_align">{$lang->cmd_list}</i></a>
+	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xe-evergreens ms_vertical_align">{$lang->cmd_list}</i></a>
 	<span class="fr" cond="$oDocument->isEditable()">
-		<a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_s"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
+		<a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
 	</span>
 </div>

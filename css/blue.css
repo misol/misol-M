@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "UTF-8";body{-webkit-text-size-adjust:100%;}
 /* Copyright (c) MinSoo Kim 2015 */
 h2.ms{
 	box-sizing: border-box;
@@ -59,20 +59,21 @@ h3.ms{
 	text-decoration:none;
 }
 .ms_font_xs, .ms_font_xs *{
-	font-size:10pt;
+	font-size:12px;
 }
 .ms_font_s, .ms_font_s *{
-	font-size:12pt;
+	font-size:14px;
 }
 .ms_font_m, .ms_font_m *{
-	font-size:14pt;
+	font-size:16px;
 }
 .ms_font_l, .ms_font_l *{
-	font-size:18pt;
+	font-size:20px;
 }
 .ms_font_xl, .ms_font_xl *{
-	font-size:23pt;
+	font-size:24px;
 }
+.ms_lh100{line-height:100%;}.ms_lh160{line-height:160%;}
 .ms_text_minus_indent{
 	text-indent: -1000px;
 	font-size: 0;
@@ -222,7 +223,7 @@ h3.ms{
 }
 .ms_blist>.auth{
 	display: block;
-	height:20px;
+	height:16px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -355,7 +356,7 @@ h3.ms{
 	display:inline-block;
 	box-sizing: border-box;
 	width:30%;
-	height:37px;
+	height:33px;line-height:100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -459,7 +460,7 @@ h3.ms{
 .rd_bt_re>ul>li .author{
 	margin:5px 0 5px;
 	width:60px;
-	height:20px;
+	height:16px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
