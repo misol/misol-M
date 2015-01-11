@@ -333,11 +333,11 @@ h3.ms{
 	border: 1px solid #757575;
 }
 .sh select{
-	width: 110px;
-	padding: 7px;
+	width: 100px;
+	padding:7px 0;
 }
 .sh input[type=search]{
-	width: 130px;
+	width: 120px;
 	-webkit-appearance: none;
 	text-align:left;
 	font-size: 19px;
@@ -609,4 +609,10 @@ h3.ms{
 	font-family: XEIcon;
 	color: #4caf50;
 	font-size: 12px;
+}
+@media screen and (max-width: 319px) {
+	.sh>form>*{
+		margin-bottom: 5px!important;
+		width: 100%!important;
+	}
 }
