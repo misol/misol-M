@@ -35,8 +35,8 @@
 	<div class="rd_bt">
 		{@ $tag_list = $oDocument->get('tag_list') }
 		<div class="ms_tags ms" cond="count($tag_list)">
-			<h3>{$lang->tag} <i class="xe-tag-lefts"> {count($tag_list)}</i></h3>
-			<div class="rd_bt_rg">
+			<h3 class="ms_font_s">{$lang->tag} <i class="xe-tag-lefts"> {count($tag_list)}</i></h3>
+			<div class="rd_bt_rg ms_font_xs">
 			<!--@for($i=0;$i<count($tag_list);$i++)-->
 				{@ $tag = $tag_list[$i]; }<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','','cpage','')}" class="tag" rel="tag">{htmlspecialchars($tag)}<block cond="$i!=count($tag_list)-1">, </block></a>
 			<!--@end-->
@@ -45,8 +45,8 @@
 		<!--@if($oDocument->hasUploadedFiles())-->
 		{@ $uploaded_list = $oDocument->getUploadedFiles(); $i=0; }
 		<div class="ms_files ms" cond="count($uploaded_list)">
-			<h3>{$lang->uploaded_file} <i class="xe-clip"> {count($uploaded_list)}</i></h3>
-			<ul class="rd_bt_rg">
+			<h3 class="ms_font_s">{$lang->uploaded_file} <i class="xe-clip"> {count($uploaded_list)}</i></h3>
+			<ul class="rd_bt_rg ms_font_xs">
 				<!--@foreach($uploaded_list as $key => $file)-->
 					{@ $i++;}
 					<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
@@ -55,8 +55,8 @@
 		</div>
 		<!--@endif-->
 		<div class="ms ms_sns">
-			<h3>{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
-			<ul class="rd_bt_rg">
+			<h3 class="ms_font_s">{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
+			<ul class="rd_bt_rg ms_font_xs">
 				<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook}</a></li>
 				<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter}</a></li>
 			</ul>
@@ -65,7 +65,7 @@
 	<div id="comment"></div>
 	<!--@if($oDocument->getCommentCount())-->
 	<div class="rd_bt_re">
-		<h3>{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
+		<h3 class="ms_font_s">{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
 		<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xe-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
 		<ul>
 			<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
@@ -123,7 +123,7 @@
 	<!--@endif-->
 	<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
 	<div class="rd_bt_re">
-		<h3 id="write_comment"><i class="xe-message-left-ellipsis"></i> {$lang->write_comment}</h3>
+		<h3 id="write_comment" class="ms_font_s"><i class="xe-message-left-ellipsis"></i> {$lang->write_comment}</h3>
 		<form action="./" method="post" class="ff ms_font_m" onsubmit="return procFilter(this, insert_comment);">
 			<input type="hidden" name="mid" value="{$mid}" />
 			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
@@ -161,7 +161,5 @@
 <!--@end-->
 <div class="btm_tools">
 	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xe-evergreens ms_vertical_align">{$lang->cmd_list}</i></a>
-	<span class="fr" cond="$oDocument->isEditable()">
-		<a href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
-	</span>
-</div>
+	<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m write"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
+</div> 
