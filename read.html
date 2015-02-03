@@ -1,5 +1,7 @@
 {@Context::loadLang(_XE_PATH_ . "modules/board/m.skins/ms_m_board/lang");}
 <load target="/common/js/jquery.js" />
+<load target="./js/mboard.js" />
+<load target="./js/kakaolink_story/kakao.link.js" />
 <div class="ms_hx">
 	<h2 class="ms ms_bred ms_font_xl"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><!--@if($oDocument->isSecret() && !$oDocument->isGranted())--><i class="xe-lock ms_vertical_align"></i> {$lang->msg_is_secret}<!--@else--><i class="xe-leaf ms_vertical_align" alt="{$lang->title}"></i> {$oDocument->getTitle()}<!--@end--></a></h2>
 	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_l"><i class="xe-evergreens ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
@@ -55,10 +57,48 @@
 		</div>
 		<!--@endif-->
 		<div class="ms ms_sns">
-			<h3 class="ms_font_s">{$lang->cmd_send} <i class="xe-share-alt"></i></h3>
+			<h3 class="ms_font_s">{$lang->ms_share} <i class="xe-share-alt"></i></h3>
 			<ul class="rd_bt_rg ms_font_xs">
-				<li><a href="https://m.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook}</a></li>
-				<li><a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode($oDocument->getTitle())}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter}</a></li>
+				<li>
+					<a href="https://www.facebook.com/sharer.php?u={rawurlencode($oDocument->getPermanentUrl())}&amp;t={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook} <span id="ms_facebook_count" style="display:none;"><i class="xe-bookmark-left ms_tred"></i></span></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/share?url={rawurlencode($oDocument->getPermanentUrl())}&amp;text={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter} <span id="ms_twitter_count" style="display:none;"><i class="xe-bookmark-left ms_tred"></i></span></a>
+				</li>
+				<li id="ms_kakaostory_link">
+					<a href="#" onclick="msKakaoStoryLink('{$oDocument->getPermanentUrl()}','{rawurlencode(htmlspecialchars_decode($module_info->browser_title))}','{rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}','{rawurlencode(htmlspecialchars_decode($oDocument->getSummary()))}'<!--@if($oDocument->thumbnailExists(700,500))-->,'{$oDocument->getThumbnail(700,500)}'<!--@end-->);return false;"><i class="xe-kakaostory ms_tred"></i> {$lang->kakaostory}</a>
+				</li>
+				<li id="ms_kakao_link" cond="$module_info->kakaoapi_key">
+					<a id="ms_kakao-link-btn" href="#"><i class="xe-kakaotalk ms_tred"></i> {$lang->kakaotalk}</a>
+					<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+					<script>
+						Kakao.init('{$module_info->kakaoapi_key}');
+						Kakao.Link.createTalkLinkButton({
+							container: '#ms_kakao-link-btn',
+							label: decodeURIComponent('{rawurlencode(htmlspecialchars_decode($oDocument->getTitle())."\n".htmlspecialchars_decode($oDocument->getSummary()))}'),
+							<block cond="$oDocument->thumbnailExists(700,500)">
+							image: {
+								src: '{$oDocument->getThumbnail(700,500)}',
+								width: '700',
+								height: '500'
+							},
+							</block>
+							webLink: {
+								text: '{$lang->ms_gotoread}',
+								url: '{$oDocument->getPermanentUrl()}'
+							},
+							webButton: {
+								text: '{$lang->ms_gotoread}',
+								url: '{$oDocument->getPermanentUrl()}'
+							},
+							fail: (function() {
+								alert('{$lang->ms_nokakao_platform}')
+							})
+						});
+						msGetSNSCount('facebook','{$oDocument->getPermanentUrl()}');
+						msGetSNSCount('twitter','{$oDocument->getPermanentUrl()}');
+					</script>
+				</li>
 			</ul>
 		</div>
 	</div>

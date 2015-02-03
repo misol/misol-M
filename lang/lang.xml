@@ -12,6 +12,12 @@
 		<value xml:lang="jp"><![CDATA[Smaller font]]></value>
 		<value xml:lang="de"><![CDATA[Smaller font]]></value>
 	</item>
+	<item name="ms_share">
+		<value xml:lang="ko"><![CDATA[공유]]></value>
+		<value xml:lang="en"><![CDATA[Share]]></value>
+		<value xml:lang="jp"><![CDATA[Share]]></value>
+		<value xml:lang="de"><![CDATA[Share]]></value>
+	</item>
 	<item name="facebook">
 		<value xml:lang="ko"><![CDATA[페이스북]]></value>
 		<value xml:lang="en"><![CDATA[Facebook]]></value>
@@ -23,6 +29,30 @@
 		<value xml:lang="en"><![CDATA[Twitter]]></value>
 		<value xml:lang="jp"><![CDATA[Twitter]]></value>
 		<value xml:lang="de"><![CDATA[Twitter]]></value>
+	</item>
+	<item name="kakaostory">
+		<value xml:lang="ko"><![CDATA[카카오스토리]]></value>
+		<value xml:lang="en"><![CDATA[KakaoStory]]></value>
+		<value xml:lang="jp"><![CDATA[KakaoStory]]></value>
+		<value xml:lang="de"><![CDATA[KakaoStory]]></value>
+	</item>
+	<item name="kakaotalk">
+		<value xml:lang="ko"><![CDATA[카카오톡]]></value>
+		<value xml:lang="en"><![CDATA[KakaoTalk]]></value>
+		<value xml:lang="jp"><![CDATA[KakaoTalk]]></value>
+		<value xml:lang="de"><![CDATA[KakaoTalk]]></value>
+	</item>
+	<item name="ms_gotoread">
+		<value xml:lang="ko"><![CDATA[자세히 읽기]]></value>
+		<value xml:lang="en"><![CDATA[Go to read]]></value>
+		<value xml:lang="jp"><![CDATA[Go to read]]></value>
+		<value xml:lang="de"><![CDATA[Go to read]]></value>
+	</item>
+	<item name="ms_nokakao_platform">
+		<value xml:lang="ko"><![CDATA[죄송합니다. 카카오 링크를 지원하지 않는 플랫폼입니다.]]></value>
+		<value xml:lang="en"><![CDATA[Sorry. Kakao Link does not support your platform.]]></value>
+		<value xml:lang="jp"><![CDATA[Sorry. Kakao Link does not support your platform.]]></value>
+		<value xml:lang="de"><![CDATA[Sorry. Kakao Link does not support your platform.]]></value>
 	</item>
 	<item name="ms_hot">
 		<value xml:lang="ko"><![CDATA[인기]]></value>

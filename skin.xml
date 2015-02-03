@@ -10,8 +10,8 @@
 		misol's mobile board skin.
 		Based on the basic mobile skin, misol enhance the usability and shape.
 	</description>
-	<version>1.0</version>
-	<date>2015-01-12</date>
+	<version>1.1</version>
+	<date>2015-02-04</date>
 	<author email_address="misol.kr@gmail.com">
 		<name xml:lang="ko">김민수(misol)</name>
 		<name xml:lang="en">MinSoo Kim(misol)</name>
@@ -36,6 +36,10 @@
 				<title xml:lang="ko">크림슨</title>
 				<title xml:lang="en">Crimson</title>
 			</options>
+			<options value="cherryblossoms">
+				<title xml:lang="ko">벚꽃</title>
+				<title xml:lang="en">Cherry Blossoms</title>
+			</options>
 			<options value="purple">
 				<title xml:lang="ko">보라색</title>
 				<title xml:lang="en">Purple</title>
@@ -48,6 +52,10 @@
 				<title xml:lang="ko">파란색</title>
 				<title xml:lang="en">Blue</title>
 			</options>
+			<options value="royalblue">
+				<title xml:lang="ko">로얄블루</title>
+				<title xml:lang="en">Royal Blue</title>
+			</options>
 			<options value="green">
 				<title xml:lang="ko">녹색</title>
 				<title xml:lang="en">Green</title>
@@ -55,6 +63,10 @@
 			<options value="mint">
 				<title xml:lang="ko">민트</title>
 				<title xml:lang="en">Mint</title>
+			</options>
+			<options value="bananayellow">
+				<title xml:lang="ko">바나나 노랑</title>
+				<title xml:lang="en">Banana Yellow</title>
 			</options>
 			<options value="brown">
 				<title xml:lang="ko">갈색</title>
@@ -68,6 +80,12 @@
 				<title xml:lang="ko">파이어폭스 오렌지</title>
 				<title xml:lang="en">Firefox Orange</title>
 			</options>
+		</var>
+		<var name="kakaoapi_key">
+			<title xml:lang="ko">카카오 개발자 자바스크립트 API 키(선택항목)</title>
+			<title xml:lang="en">KAKAO Developers Javascript API Key(Optional)</title>
+			<description xml:lang="ko">https://developers.kakao.com/apps/new 에서 앱을 생성하고 발급받으실 수 있습니다. 현재 사이트의 주소를 https://developers.kakao.com/apps/31311/settings/general 에서 플랫폼으로 등록하셔야 정상적으로 이용하실 수 있습니다.</description>
+			<description xml:lang="en">KAKAO Developers API key will published by KAKAO after you register your site as a 'APP' on https://developers.kakao.com/apps/new , and register your site domain on https://developers.kakao.com/apps/31311/settings/general as a platform.</description>
 		</var>
 	</extra_vars>
 </skin>
