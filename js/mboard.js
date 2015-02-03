@@ -71,7 +71,7 @@ function msKakaoStoryLink(url,module_title,doc_title,description,image) {
 	var ms_param = {
 		post : doc_title + "\n" + url,
 		appid : window.location.hostname,
-		appver : "1.0.1",
+		appver : "1.1.1",
 		apiver : "1.0",
 		appname : module_title
 	};
