@@ -23,7 +23,7 @@
 			<!--@end-->
 			<li>
 				<label for="nTitle" form="ms_write">{$lang->title}</label>
-				<input name="title" type="text" id="nTitle" />
+				<input name="title" type="text" id="nTitle" value="{htmlspecialchars($oDocument->getTitleText())}" />
 			</li>
 			<!--@if(count($extra_keys))-->
 			<!--@foreach($extra_keys as $key=> $val)-->
@@ -35,20 +35,16 @@
 			<!--@end-->
 			<li>
 				<label for="nText" form="ms_write">{$lang->content}</label>
-				<textarea name="content" rows="8" cols="42" id="nText"></textarea>
+				<textarea name="content" rows="8" cols="42" id="nText"><!--@if($oDocument->get('document_srl') && strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))-->{str_replace(array("\r\n","\n",'<br>','<br />','<','>'),array('','',"\n","\n",'&lt;','&gt;'),$oDocument->get('content'))}<!--@end--></textarea>
 			</li>
 			<li>
 				<label for="nTag" form="ms_write">{$lang->tag}</label>
-				<input name="tags" type="text" id="nTag" placeholder="{$lang->about_tag}" />
+				<input name="tags" type="text" id="nTag" placeholder="{$lang->about_tag}" value="{htmlspecialchars($oDocument->get('tags'))}" />
 			</li>
 			<!--@if(!$is_logged)-->
 			<li>
 				<label for="uName" form="ms_write">{$lang->writer}</label>
-				<input name="nick_name" type="text" id="uName" />
-			</li>
-			<li>
-				<label for="uMail" form="ms_write">{$lang->email_address}</label>
-				<input name="email_address" type="email" id="uMail" />
+				<input name="nick_name" type="text" id="uName" value="{htmlspecialchars($oDocument->get('nick_name'))}" />
 			</li>
 			<li>
 				<label for="uPw" form="ms_write">{$lang->password}</label>
@@ -56,7 +52,7 @@
 			</li>
 			<li>
 				<label for="uSite" form="ms_write">{$lang->homepage}</label>
-				<input name="homepage" type="url" id="uSite" placeholder="http://" />
+				<input name="homepage" type="url" id="uSite" placeholder="http://" value="{htmlspecialchars($oDocument->get('homepage'))}" />
 			</li>
 			<!--@endif-->
 			<li>
@@ -64,6 +60,8 @@
 				<label for="reAllow" form="ms_write" class="ms_inline">{$lang->allow_comment}</label>
 				<input type="checkbox" name="allow_trackback" value="Y" <!--@if($oDocument->allowTrackback())-->checked="checked"<!--@end--> id="trAllow" />
 				<label for="trAllow" form="ms_write" class="ms_inline">{$lang->allow_trackback}</label>
+				<input cond="$grant->manager" type="checkbox" name="is_notice" value="Y" checked="checked"|cond="$oDocument->isNotice()" id="is_notice" />
+				<label cond="$grant->manager" for="is_notice" form="ms_write" class="ms_inline">{$lang->notice}</label>
 
 				<!--@if(is_array($status_list))-->
 				<div>

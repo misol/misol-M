@@ -2,7 +2,7 @@
 <load target="js/mboard.js" />
 <div class="bd rd">
 	<div class="ms_hx">
-		<h2 class="ms ms_bred ms_font_xl"><i class="xe-message-right ms_vertical_align"></i> {$lang->write_comment}</h2>
+		<h2 class="ms ms_bred ms_font_xl"><i class="xe-message-right ms_vertical_align"></i> <!--@if($oComment->get('comment_srl') && strip_tags($oComment->get('content'),'<br>')==$oComment->get('content'))-->{$lang->cmd_modify}<!--@else-->{$lang->write_comment}<!--@end--></h2>
 		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
 	</div>
 	<div class="rd_bt_re" cond="$oSourceComment->isExists()">
@@ -40,16 +40,13 @@
 		<ul>
 			<li>
 				<label for="rText">{$lang->comment}</label>
-				<textarea name="content" rows="5" cols="42" id="rText"></textarea>
+				<!--// mobile 에서 작성한 댓글인 경우만 수정 가능(그렇지 않은 경우는 Core의 에디터 교체에 맞추어서 적용) -->
+				<textarea name="content" id="ms_comment_content" rows="5" cols="42" id="rText"><!--@if($oComment->get('comment_srl') && strip_tags($oComment->get('content'),'<br>')==$oComment->get('content'))-->{str_replace(array("\r\n","\n",'<br>','<br />','<','>'),array('','',"\n","\n",'&lt;','&gt;'),$oComment->get('content'))}<!--@end--></textarea>
 			</li>
 			<!--@if(!$is_logged)-->
 			<li>
 				<label for="uName">{$lang->writer}</label>
-				<input name="nick_name" type="text" id="uName" />
-			</li>
-			<li>
-				<label for="uMail">{$lang->email_address}</label>
-				<input name="email_address" type="email" id="uMail" />
+				<input name="nick_name" type="text" id="uName" value="{htmlspecialchars($oComment->getNickName())}" />
 			</li>
 			<li>
 				<label for="uPw">{$lang->password}</label>
@@ -57,7 +54,7 @@
 			</li>
 			<li>
 				<label for="uSite">{$lang->homepage}</label>
-				<input name="homepage" type="url" id="uSite" value="" />
+				<input name="homepage" type="url" id="uSite" placeholder="http://" value="{htmlspecialchars($oComment->get('homepage'))}" />
 			</li>
 			<!--@endif-->
 		</ul>

@@ -97,6 +97,12 @@
 						});
 					</script>
 				</li>
+				<li>
+					<a href="https://line.me/R/msg/text/?{rawurlencode(htmlspecialchars_decode($oDocument->getTitle())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}" onclick="window.open(this.href);return false;"><i class="xe-line-messenger ms_tred"></i> {$lang->ms_lineapp}</a>
+				</li>
+				<li>
+					<a href="mailto:?body={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()."\n".$oDocument->getSummary())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}"><i class="xe-mail-open-letter ms_tred"></i> {$lang->cmd_send_email}</a>
+				</li>
 				<script>
 					msGetSNSCount('facebook','{substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl)}');
 					msGetSNSCount('twitter','{substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl)}');
@@ -147,6 +153,7 @@
 					<p class="action">
 						<a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply"><i class="xe-message-right"></i> {$lang->cmd_reply}</a>
 						<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete"><i class="xe-eraser"></i> {$lang->cmd_delete}</a>
+						<a cond="($comment->isGranted()||!$comment->get('member_srl')) && (strip_tags($comment->get('content'),'<br>')==$comment->get('content'))" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify"><i class="xe-repair"></i> {$lang->cmd_modify}</a>
 						<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class="xe-cube"></i> {$lang->cmd_comment_do}...</a>
 					</p>
 				</div>
@@ -181,10 +188,6 @@
 					<input name="nick_name" type="text" id="uName" />
 				</li>
 				<li>
-					<label for="uMail">{$lang->email_address}</label>
-					<input name="email_address" type="email" id="uMail" />
-				</li>
-				<li>
 					<label for="uPw">{$lang->password}</label>
 					<input name="password" type="password" id="uPw" />
 				</li>
@@ -203,5 +206,6 @@
 <!--@end-->
 <div class="btm_tools">
 	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xe-evergreens ms_vertical_align">{$lang->cmd_list}</i></a>
+	<!--@if(strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))--><a cond="$oDocument->isEditable()" class="ms_btn ms_font_m" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class="xe-repair ms_vertical_align">{$lang->cmd_modify}</i></a><!--@end-->
 	<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m write"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
-</div> 
+</div>

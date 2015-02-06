@@ -42,6 +42,12 @@
 		<value xml:lang="jp"><![CDATA[KakaoTalk]]></value>
 		<value xml:lang="de"><![CDATA[KakaoTalk]]></value>
 	</item>
+	<item name="ms_lineapp">
+		<value xml:lang="ko"><![CDATA[라인]]></value>
+		<value xml:lang="en"><![CDATA[LINE]]></value>
+		<value xml:lang="jp"><![CDATA[LINE]]></value>
+		<value xml:lang="de"><![CDATA[LINE]]></value>
+	</item>
 	<item name="ms_gotoread">
 		<value xml:lang="ko"><![CDATA[자세히 읽기]]></value>
 		<value xml:lang="en"><![CDATA[Go to read]]></value>
