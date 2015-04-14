@@ -1,7 +1,7 @@
 {@Context::loadLang(_XE_PATH_ . "modules/board/m.skins/ms_m_board/lang");}
 <div class="ms_hx">
-	<h2 class="ms ms_bred ms_font_xl"><a href="{getUrl('','vid',$vid,'mid',$mid)}" class="ms_a_deco_none ms_bred"><i class="xe-evergreens ms_vertical_align"></i> {$module_info->browser_title}</a></h2>
-	<div class="ms_pa_r0"><a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write ms_btn ms_font_l"><i class="xe-pen ms_vertical_align"></i><span class="ms_text_minus_indent">{$lang->cmd_write}</span></a></div>
+	<h2 class="ms ms_bred ms_font_xl"><a href="{getUrl('','vid',$vid,'mid',$mid)}" class="ms_a_deco_none ms_bred"><i class="xi-contents-grid ms_vertical_align"></i> {$module_info->browser_title}</a></h2>
+	<div class="ms_pa_r0"><a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write ms_btn ms_font_l"><i class="xi-pen ms_vertical_align"></i><span class="ms_text_minus_indent">{$lang->cmd_write}</span></a></div>
 </div>
 <ul class="lt">
 	<!--@foreach($notice_list as $no => $document)-->
@@ -17,8 +17,8 @@
 	<li>
 		<a href="{getUrl('document_srl', $document->document_srl)}">
 			<span class="ms_blist" style="padding-right: 55px"|cond="$document->getCommentCount()">
-				<span class="title"><span class="notice ms_font_m"><i class="xe-star"|cond="$document->get('hot_document')" class="xe-notice"|cond="!$document->get('hot_document')"></i><span class="ms_text_minus_indent"><!--@if($document->get('hot_document'))-->{$lang->ms_hot}<!--@else-->{$lang->notice}<!--@end--></span></span> <i class="xe-lock ms_tred ms_font_m" cond="$document->isSecret()" alt="{$lang->thisissecret}"> </i><strong class="ms_font_m ms_lh160">{$document->getTitle($module_info->subject_cut_size)}</strong><block cond="$document->hasUploadedFiles()"> <i class="xe-clip ms_tred ms_font_xs" alt="{$lang->uploaded_file}"></i></block></span>
-				<span class="auth ms_font_xs"><span class="time"><i class="xe-time-point" alt="{$lang->regdate}"></i> <!--@if($time_gap < 60)-->{$min_gap}<!--@elseif($time_gap < 3600)-->{$mins_gap}<!--@elseif($thour_gap < 2)-->{$hour_gap}<!--@elseif($thour_gap < 20)-->{$hours_gap}<!--@else-->{$document->getRegDate("Y.m.d")}<!--@end--></span><!--@if($module_info->use_category == "Y" && $document->get('category_srl'))--><span class="cat"><i class="xe-tree" alt="{$lang->category}"></i> {$category_list[$document->get('category_srl')]->title}</span><!--@end--><span class="auth"><i class="xe-user" alt="{$lang->nick_name}"></i> <strong>{$document->getNickName()}</strong></span></span> 
+				<span class="title"><span class="notice ms_font_m"><i class="xi-star"|cond="$document->get('hot_document')" class="xi-notice"|cond="!$document->get('hot_document')"></i><span class="ms_text_minus_indent"><!--@if($document->get('hot_document'))-->{$lang->ms_hot}<!--@else-->{$lang->notice}<!--@end--></span></span> <i class="xi-lock ms_tred ms_font_m" cond="$document->isSecret()" alt="{$lang->thisissecret}"> </i><strong class="ms_font_m ms_lh160">{$document->getTitle($module_info->subject_cut_size)}</strong><block cond="$document->hasUploadedFiles()"> <i class="xi-clip ms_tred ms_font_xs" alt="{$lang->uploaded_file}"></i></block></span>
+				<span class="auth ms_font_xs"><span class="time"><i class="xi-time" alt="{$lang->regdate}"></i> <!--@if($time_gap < 60)-->{$min_gap}<!--@elseif($time_gap < 3600)-->{$mins_gap}<!--@elseif($thour_gap < 2)-->{$hour_gap}<!--@elseif($thour_gap < 20)-->{$hours_gap}<!--@else-->{$document->getRegDate("Y.m.d")}<!--@end--></span><!--@if($module_info->use_category == "Y" && $document->get('category_srl'))--><span class="cat"><i class="xi-tree" alt="{$lang->category}"></i> {$category_list[$document->get('category_srl')]->title}</span><!--@end--><span class="auth"><i class="xi-user" alt="{$lang->nick_name}"></i> <strong>{$document->getNickName()}</strong></span></span> 
 			</span>
 			<span class="ms_pa_r0" cond="$document->getCommentCount()">
 				<span class="ms_btn ms_vertical_align ms_cmt_count" title="{$lang->comment_count}"><span class="ms_vertical_align ms_font_m">{$document->getCommentCount()}</span></span>
@@ -39,8 +39,8 @@
 	<li>
 		<a href="{getUrl('document_srl', $document->document_srl)}">
 			<span class="ms_blist" style="padding-right: 55px"|cond="$document->getCommentCount()">
-				<span class="title"><i class="xe-lock ms_tred ms_font_m" cond="$document->isSecret()" alt="{$lang->thisissecret}"> </i><strong class="ms_font_m ms_lh160">{$document->getTitle($module_info->subject_cut_size)}</strong><block cond="$document->hasUploadedFiles()"> <i class="xe-clip ms_tred ms_font_xs" alt="{$lang->uploaded_file}"></i></block></span>
-				<span class="auth ms_font_xs"><span class="time"><i class="xe-time-point" alt="{$lang->regdate}"></i> <!--@if($time_gap < 60)-->{$min_gap}<!--@elseif($time_gap < 3600)-->{$mins_gap}<!--@elseif($thour_gap < 2)-->{$hour_gap}<!--@elseif($thour_gap < 20)-->{$hours_gap}<!--@else-->{$document->getRegDate("Y.m.d")}<!--@end--></span><!--@if($module_info->use_category == "Y" && $document->get('category_srl'))--><span class="cat"><i class="xe-tree" alt="{$lang->category}"></i> {$category_list[$document->get('category_srl')]->title}</span><!--@end--><span class="auth"><i class="xe-user" alt="{$lang->nick_name}"></i> <strong>{$document->getNickName()}</strong></span></span> 
+				<span class="title"><i class="xi-lock ms_tred ms_font_m" cond="$document->isSecret()" alt="{$lang->thisissecret}"> </i><strong class="ms_font_m ms_lh160">{$document->getTitle($module_info->subject_cut_size)}</strong><block cond="$document->hasUploadedFiles()"> <i class="xi-clip ms_tred ms_font_xs" alt="{$lang->uploaded_file}"></i></block></span>
+				<span class="auth ms_font_xs"><span class="time"><i class="xi-time" alt="{$lang->regdate}"></i> <!--@if($time_gap < 60)-->{$min_gap}<!--@elseif($time_gap < 3600)-->{$mins_gap}<!--@elseif($thour_gap < 2)-->{$hour_gap}<!--@elseif($thour_gap < 20)-->{$hours_gap}<!--@else-->{$document->getRegDate("Y.m.d")}<!--@end--></span><!--@if($module_info->use_category == "Y" && $document->get('category_srl'))--><span class="cat"><i class="xi-tree" alt="{$lang->category}"></i> {$category_list[$document->get('category_srl')]->title}</span><!--@end--><span class="auth"><i class="xi-user" alt="{$lang->nick_name}"></i> <strong>{$document->getNickName()}</strong></span></span> 
 			</span>
 			<span class="ms_pa_r0" cond="$document->getCommentCount()">
 				<span class="ms_btn ms_vertical_align ms_cmt_count" title="{$lang->comment_count}"><span class="ms_vertical_align ms_font_m">{$document->getCommentCount()}</span></span>
@@ -59,8 +59,8 @@
 	<!--@endif-->
 </div>
 <div class="btm_tools">
-	<!--@if($module_info->use_category == "Y")--><a href="{getUrl('page','','act','dispBoardCategory','')}" class="ca ms_btn ms_font_m"><i class="xe-tree ms_vertical_align">{$lang->category}</i></a><!--@endif-->
-	<a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write ms_btn ms_font_m"><i class="xe-pen ms_vertical_align">{$lang->cmd_write}</i></a>
+	<!--@if($module_info->use_category == "Y")--><a href="{getUrl('page','','act','dispBoardCategory','')}" class="ca ms_btn ms_font_m"><i class="xi-tree ms_vertical_align">{$lang->category}</i></a><!--@endif-->
+	<a href="{getUrl('act','dispBoardWrite','document_srl','')}" class="write ms_btn ms_font_m"><i class="xi-pen ms_vertical_align">{$lang->cmd_write}</i></a>
 </div>
 <div class="sh">
 	<form action="{getUrl()}" method="get">
@@ -74,6 +74,6 @@
 			<!--@end-->
 		</select>
 		<input type="search" class="ms_btn" name="search_keyword" value="{htmlspecialchars($search_keyword)}" title="{$lang->cmd_search}" />
-		<button type="submit" class="ms_btn" title="{$lang->cmd_search}"><i class="xe-magnifier"></i></button>
+		<button type="submit" class="ms_btn" title="{$lang->cmd_search}"><i class="xi-magnifier"></i></button>
 	</form>
 </div>

@@ -3,10 +3,10 @@
 <load target="./js/mboard.js" />
 <load target="./js/kakaolink_story/kakao.link.js" />
 <div class="ms_hx">
-	<h2 class="ms ms_bred ms_font_xl"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><!--@if($oDocument->isSecret() && !$oDocument->isGranted())--><i class="xe-lock ms_vertical_align"></i> {$lang->msg_is_secret}<!--@else--><i class="xe-leaf ms_vertical_align" alt="{$lang->title}"></i> {$oDocument->getTitle()}<!--@end--></a></h2>
-	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_l"><i class="xe-evergreens ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
+	<h2 class="ms ms_bred ms_font_xl"><a href="{$oDocument->getPermanentUrl()}" class="ms_a_deco_none ms_bred"><!--@if($oDocument->isSecret() && !$oDocument->isGranted())--><i class="xi-lock ms_vertical_align"></i> {$lang->msg_is_secret}<!--@else--><i class="xi-leaf ms_vertical_align" alt="{$lang->title}"></i> {$oDocument->getTitle()}<!--@end--></a></h2>
+	<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','','cpage','')}" class="write ms_btn ms_font_l"><i class="xi-contents-grid ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
 	<span class="ex ms_font_xs">
-		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xe-user ms_tred" alt="{$lang->nick_name}"></i> {$oDocument->getNickName()}</a><span class="time"><i class="xe-time-point ms_tred" alt="{$lang->regdate}"></i> {$oDocument->getRegdate("m.d H:i")}</span><a href="#" onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*1.25 + msFontUnit;}); return false;" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-expand ms_tred"></i> {$lang->fontsize_expand}</a><a onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*0.8 + msFontUnit;}); return false;" href="#" class="ms_magnifier ms_a_deco_none"><i class="xe-magnifier-reduce ms_tred"></i> {$lang->fontsize_reduce}</a>
+		<a class="auth ms_a_deco_none" href="{getUrl('document_srl','','category','','page','','act','','cpage','','vid',$vid,'mid',$mid,'search_target','nick_name','search_keyword',$oDocument->getNickName())}"><i class="xi-user ms_tred" alt="{$lang->nick_name}"></i> {$oDocument->getNickName()}</a><span class="time"><i class="xi-time ms_tred" alt="{$lang->regdate}"></i> {$oDocument->getRegdate("m.d H:i")}</span><a href="#" onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*1.25 + msFontUnit;}); return false;" class="ms_magnifier ms_a_deco_none"><i class="xi-magnifier-expand ms_tred"></i> {$lang->fontsize_expand}</a><a onclick="jQuery('.xe_content, .xe_content *').css('font-size',function(){var msFontSize = parseFloat(jQuery(this).css('font-size')); var msFontUnit = jQuery(this).css('font-size').replace(msFontSize.toString(),''); return msFontSize*0.8 + msFontUnit;}); return false;" href="#" class="ms_magnifier ms_a_deco_none"><i class="xi-magnifier-reduce ms_tred"></i> {$lang->fontsize_reduce}</a>
 	</span>
 </div>
 <!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
@@ -15,7 +15,7 @@
 	<input type="hidden" name="page" value="{$page}" />
 	<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
 		<div class="ms_bxa_90">
-			<label for="cpw" form="secret_form"><i class="xe-lock ms_tred"></i> {$lang->password}</label>
+			<label for="cpw" form="secret_form"><i class="xi-lock ms_tred"></i> {$lang->password}</label>
 			<input type="password" name="password" id="cpw" />
 			<p class="ms_font_s">{$lang->msg_input_password}</p>
 			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_input}</button>
@@ -37,7 +37,7 @@
 	<div class="rd_bt">
 		{@ $tag_list = $oDocument->get('tag_list') }
 		<div class="ms_tags ms" cond="count($tag_list)">
-			<h3 class="ms_font_s">{$lang->tag} <i class="xe-tag-lefts"> {count($tag_list)}</i></h3>
+			<h3 class="ms_font_s">{$lang->tag} <i class="xi-tags"> {count($tag_list)}</i></h3>
 			<div class="rd_bt_rg ms_font_xs">
 			<!--@for($i=0;$i<count($tag_list);$i++)-->
 				{@ $tag = $tag_list[$i]; }<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','','cpage','')}" class="tag" rel="tag">{htmlspecialchars($tag)}<block cond="$i!=count($tag_list)-1">, </block></a>
@@ -47,35 +47,35 @@
 		<!--@if($oDocument->hasUploadedFiles())-->
 		{@ $uploaded_list = $oDocument->getUploadedFiles(); $i=0; }
 		<div class="ms_files ms" cond="count($uploaded_list)">
-			<h3 class="ms_font_s">{$lang->uploaded_file} <i class="xe-clip"> {count($uploaded_list)}</i></h3>
+			<h3 class="ms_font_s">{$lang->uploaded_file} <i class="xi-clip"> {count($uploaded_list)}</i></h3>
 			<ul class="rd_bt_rg ms_font_xs">
 				<!--@foreach($uploaded_list as $key => $file)-->
 					{@ $i++;}
-					<li><a href="{getUrl('')}{$file->download_url}"><i class="xe-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
+					<li><a href="{getUrl('')}{$file->download_url}"><i class="xi-download ms_tred"></i> {$file->source_filename} <span class="size">({FileHandler::filesize($file->file_size)})</span><block cond="$i!=count($uploaded_list)-1">, </block></a></li>
 				<!--@end-->
 			</ul>
 		</div>
 		<!--@endif-->
 		<div class="ms ms_sns">
-			<h3 class="ms_font_s">{$lang->ms_share} <i class="xe-share-alt"></i></h3>
+			<h3 class="ms_font_s">{$lang->ms_share} <i class="xi-share-alt"></i></h3>
 			<ul class="rd_bt_rg ms_font_xs">
 				<li>
-					<a href="https://www.facebook.com/sharer.php?u={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;t={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}" onclick="window.open(this.href);return false;"><i class="xe-facebook ms_tred"></i> {$lang->facebook} <span id="ms_facebook_count" style="display:none;"><i class="xe-bookmark-left ms_tred"></i></span></a>
+					<a href="https://www.facebook.com/sharer.php?u={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;t={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-facebook ms_tred"></i> {$lang->facebook} <span id="ms_facebook_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
 				</li>
 				<li>
-					<a href="https://twitter.com/share?url={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;text={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}" onclick="window.open(this.href);return false;"><i class="xe-twitter ms_tred"></i> {$lang->twitter} <span id="ms_twitter_count" style="display:none;"><i class="xe-bookmark-left ms_tred"></i></span></a>
+					<a href="https://twitter.com/share?url={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;text={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-twitter ms_tred"></i> {$lang->twitter} <span id="ms_twitter_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
 				</li>
 				<li id="ms_kakaostory_link">
-					<a href="#" onclick="msKakaoStoryLink('{$oDocument->getPermanentUrl()}','{rawurlencode(htmlspecialchars_decode($module_info->browser_title))}','{rawurlencode(htmlspecialchars_decode($oDocument->getTitle()))}','{rawurlencode(htmlspecialchars_decode($oDocument->getSummary()))}'<!--@if($oDocument->thumbnailExists(700,500))-->,'{$oDocument->getThumbnail(700,500)}'<!--@end-->);return false;"><i class="xe-kakaostory ms_tred"></i> {$lang->kakaostory}</a>
+					<a href="#" onclick="msKakaoStoryLink('{$oDocument->getPermanentUrl()}','{rawurlencode(htmlspecialchars_decode($module_info->browser_title))}','{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}','{rawurlencode(htmlspecialchars_decode($oDocument->getSummary()))}'<!--@if($oDocument->thumbnailExists(700,500))-->,'{$oDocument->getThumbnail(700,500)}'<!--@end-->);return false;"><i class="xi-kakaostory ms_tred"></i> {$lang->kakaostory}</a>
 				</li>
 				<li id="ms_kakao_link" cond="$module_info->kakaoapi_key">
-					<a id="ms_kakao-link-btn" href="#"><i class="xe-kakaotalk ms_tred"></i> {$lang->kakaotalk}</a>
+					<a id="ms_kakao-link-btn" href="#"><i class="xi-kakaotalk ms_tred"></i> {$lang->kakaotalk}</a>
 					<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 					<script>
 						Kakao.init('{$module_info->kakaoapi_key}');
 						Kakao.Link.createTalkLinkButton({
 							container: '#ms_kakao-link-btn',
-							label: decodeURIComponent('{rawurlencode(htmlspecialchars_decode($oDocument->getTitle())."\n".htmlspecialchars_decode($oDocument->getSummary()))}'),
+							label: decodeURIComponent('{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle()))."\n".htmlspecialchars_decode($oDocument->getSummary()))}'),
 							<block cond="$oDocument->thumbnailExists(700,500)">
 							image: {
 								src: '{$oDocument->getThumbnail(700,500)}',
@@ -98,10 +98,10 @@
 					</script>
 				</li>
 				<li>
-					<a href="https://line.me/R/msg/text/?{rawurlencode(htmlspecialchars_decode($oDocument->getTitle())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}" onclick="window.open(this.href);return false;"><i class="xe-line-messenger ms_tred"></i> {$lang->ms_lineapp}</a>
+					<a href="https://line.me/R/msg/text/?{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle()))."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}" onclick="window.open(this.href);return false;"><i class="xi-line-messenger ms_tred"></i> {$lang->ms_lineapp}</a>
 				</li>
 				<li>
-					<a href="mailto:?body={rawurlencode(htmlspecialchars_decode($oDocument->getTitle()."\n".$oDocument->getSummary())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}"><i class="xe-mail-open-letter ms_tred"></i> {$lang->cmd_send_email}</a>
+					<a href="mailto:?body={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())."\n".$oDocument->getSummary())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}"><i class="xi-envelope-open ms_tred"></i> {$lang->cmd_send_email}</a>
 				</li>
 				<script>
 					msGetSNSCount('facebook','{substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl)}');
@@ -113,14 +113,14 @@
 	<div id="comment"></div>
 	<!--@if($oDocument->getCommentCount())-->
 	<div class="rd_bt_re">
-		<h3 class="ms_font_s">{$lang->comment} <i class="xe-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
-		<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xe-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
+		<h3 class="ms_font_s">{$lang->comment} <i class="xi-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
+		<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xi-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
 		<ul>
 			<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
 				<div class="ms_cmt_top">
 					<div class="fbMeta">
 						<img cond="$comment->getProfileImage()" src="{$comment->getProfileImage()}" alt="Profile" class="profile" />
-						<i cond="!$comment->getProfileImage()" class="xe-man profile"></i>
+						<i cond="!$comment->getProfileImage()" class="xi-user profile"></i>
 						<span cond="!$comment->getProfileImage()" class="profile"></span>
 						<h3 class="author ms_font_xs">
 							<a cond="!$comment->member_srl && $comment->homepage" href="{$comment->getHomepageUrl()}">{$comment->getNickName()}</a>
@@ -131,7 +131,7 @@
 					<div class="ms_cmt_cont">
 						<!--@if(!$comment->isAccessible())-->
 						<form action="./" method="get" class="xe_content ff ms_font_m ms_bxa_90" id="sc{$comment->comment_srl}" onsubmit="return procFilter(this, input_password)">
-							<label for="cpw_{$comment->comment_srl}" form="sc{$comment->comment_srl}"><i class="xe-lock ms_tred"></i> {$lang->password}</label>
+							<label for="cpw_{$comment->comment_srl}" form="sc{$comment->comment_srl}"><i class="xi-lock ms_tred"></i> {$lang->password}</label>
 							<input type="password" name="password" id="cpw_{$comment->comment_srl}" class="iText" />
 							<p class="ms_lh160">{$lang->msg_is_secret}<br />{$lang->msg_input_password}</p>
 							<input type="hidden" name="mid" value="{$mid}" />
@@ -147,14 +147,14 @@
 				</div>
 				<div class="ms_cmt_bottom">
 					<div class="ms_btm_meta">
-						<p class="time ms_font_xs"><i class="xe-time-point"></i> {$comment->getRegdate('y.m.d H:i')}</p>
-						<span class="vote" cond="$comment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$comment->get('voted_count')?$comment->get('voted_count'):0}</i></span>
+						<p class="time ms_font_xs"><i class="xi-time"></i> {$comment->getRegdate('y.m.d H:i')}</p>
+						<span class="vote" cond="$comment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xi-medal ms_tred">{$comment->get('voted_count')?$comment->get('voted_count'):0}</i></span>
 					</div>
 					<p class="action">
-						<a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply"><i class="xe-message-right"></i> {$lang->cmd_reply}</a>
-						<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete"><i class="xe-eraser"></i> {$lang->cmd_delete}</a>
-						<a cond="($comment->isGranted()||!$comment->get('member_srl')) && (strip_tags($comment->get('content'),'<br>')==$comment->get('content'))" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify"><i class="xe-repair"></i> {$lang->cmd_modify}</a>
-						<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class="xe-cube"></i> {$lang->cmd_comment_do}...</a>
+						<a cond="$oDocument->allowComment()" href="{getUrl('act','dispBoardReplyComment','comment_srl',$comment->comment_srl)}" class="reply"><i class="xi-message"></i> {$lang->cmd_reply}</a>
+						<a cond="$comment->isGranted()||!$comment->get('member_srl')" href="{getUrl('act','dispBoardDeleteComment','comment_srl',$comment->comment_srl)}" class="delete"><i class="xi-eraser"></i> {$lang->cmd_delete}</a>
+						<a cond="($comment->isGranted()||!$comment->get('member_srl')) && (strip_tags($comment->get('content'),'<br>')==$comment->get('content'))" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}" class="modify"><i class="xi-wrench"></i> {$lang->cmd_modify}</a>
+						<a cond="$is_logged" class="comment_{$comment->comment_srl} this" href="#popup_menu_area" onclick="return false"><i class="xi-cube"></i> {$lang->cmd_comment_do}...</a>
 					</p>
 				</div>
 			</li>
@@ -172,7 +172,7 @@
 	<!--@endif-->
 	<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
 	<div class="rd_bt_re">
-		<h3 id="write_comment" class="ms_font_s"><i class="xe-message-left-ellipsis"></i> {$lang->write_comment}</h3>
+		<h3 id="write_comment" class="ms_font_s"><i class="xi-comments"></i> {$lang->write_comment}</h3>
 		<form action="./" method="post" class="ff ms_font_m" onsubmit="return procFilter(this, insert_comment);">
 			<input type="hidden" name="mid" value="{$mid}" />
 			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
@@ -205,7 +205,7 @@
 	<!--@end-->
 <!--@end-->
 <div class="btm_tools">
-	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xe-evergreens ms_vertical_align">{$lang->cmd_list}</i></a>
-	<!--@if(strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))--><a cond="$oDocument->isEditable()" class="ms_btn ms_font_m" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class="xe-repair ms_vertical_align">{$lang->cmd_modify}</i></a><!--@end-->
-	<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m write"><i class="xe-wastebasket ms_vertical_align">{$lang->cmd_delete}</i></a>
+	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xi-contents-grid ms_vertical_align">{$lang->cmd_list}</i></a>
+	<!--@if(strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))--><a cond="$oDocument->isEditable()" class="ms_btn ms_font_m" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class="xi-wrench ms_vertical_align">{$lang->cmd_modify}</i></a><!--@end-->
+	<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m write"><i class="xi-trash ms_vertical_align">{$lang->cmd_delete}</i></a>
 </div>

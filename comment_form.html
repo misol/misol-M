@@ -2,8 +2,8 @@
 <load target="js/mboard.js" />
 <div class="bd rd">
 	<div class="ms_hx">
-		<h2 class="ms ms_bred ms_font_xl"><i class="xe-message-right ms_vertical_align"></i> <!--@if($oComment->get('comment_srl') && strip_tags($oComment->get('content'),'<br>')==$oComment->get('content'))-->{$lang->cmd_modify}<!--@else-->{$lang->write_comment}<!--@end--></h2>
-		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
+		<h2 class="ms ms_bred ms_font_xl"><i class="xi-message ms_vertical_align"></i> <!--@if($oComment->get('comment_srl') && strip_tags($oComment->get('content'),'<br>')==$oComment->get('content'))-->{$lang->cmd_modify}<!--@else-->{$lang->write_comment}<!--@end--></h2>
+		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xi-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
 	</div>
 	<div class="rd_bt_re" cond="$oSourceComment->isExists()">
 		<ul>
@@ -11,12 +11,12 @@
 				<div class="ms_cmt_top">
 					<div class="fbMeta">
 						<img cond="$oSourceComment->getProfileImage()" src="{$oSourceComment->getProfileImage()}" alt="Profile" class="profile" />
-						<i cond="!$oSourceComment->getProfileImage()" class="xe-man profile"></i>
+						<i cond="!$oSourceComment->getProfileImage()" class="xi-user profile"></i>
 						<span cond="!$oSourceComment->getProfileImage()" class="profile"></span>
 						<h3 class="author ms_font_xs">
-							<a cond="!$oSourceComment->member_srl && $oSourceComment->homepage" href="{$oSourceComment->getHomepageUrl()}"><i class="xe-link"></i> {$oSourceComment->getNickName()}</a>
-							<strong cond="!$oSourceComment->member_srl && !$oSourceComment->homepage"><i class="xe-user"></i> {$oSourceComment->getNickName()}</strong>
-							<a cond="$oSourceComment->member_srl" href="#popup_menu_area" class="member_{$oSourceComment->member_srl}" onclick="return false"><i class="xe-user"></i> {$oSourceComment->getNickName()}</a>
+							<a cond="!$oSourceComment->member_srl && $oSourceComment->homepage" href="{$oSourceComment->getHomepageUrl()}"><i class="xi-link"></i> {$oSourceComment->getNickName()}</a>
+							<strong cond="!$oSourceComment->member_srl && !$oSourceComment->homepage"><i class="xi-user"></i> {$oSourceComment->getNickName()}</strong>
+							<a cond="$oSourceComment->member_srl" href="#popup_menu_area" class="member_{$oSourceComment->member_srl}" onclick="return false"><i class="xi-user"></i> {$oSourceComment->getNickName()}</a>
 						</h3>
 					</div>
 					<div class="ms_cmt_cont">
@@ -25,8 +25,8 @@
 				</div>
 				<div class="ms_cmt_bottom">
 					<div class="ms_btm_meta">
-						<p class="time ms_font_xs"><i class="xe-time-point"></i> {$oSourceComment->getRegdate('y.m.d H:i')}</p>
-						<span class="vote" cond="$oSourceComment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$oSourceComment->get('voted_count')?$oSourceComment->get('voted_count'):0}</i></span>
+						<p class="time ms_font_xs"><i class="xi-time"></i> {$oSourceComment->getRegdate('y.m.d H:i')}</p>
+						<span class="vote" cond="$oSourceComment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xi-medal ms_tred">{$oSourceComment->get('voted_count')?$oSourceComment->get('voted_count'):0}</i></span>
 					</div>
 				</div>
 			</li>

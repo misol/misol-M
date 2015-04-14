@@ -12,4 +12,8 @@
 <load target="css/brown.css" cond="$module_info->title_image == 'brown'" />
 <load target="css/grey.css" cond="$module_info->title_image == 'grey'" />
 <load target="css/fforange.css" cond="$module_info->title_image == 'fforange'" />
-<link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/49314/XEIconv10/style-cf.css" />
+<!--@if(version_compare(__XE_VERSION__, '1.8.0', '<'))-->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/xeicon/1.0.4/xeicon.min.css" />
+<!--@else-->
+	<load target="./../../../../common/xeicon/xeicon.min.css" />
+<!--@end-->

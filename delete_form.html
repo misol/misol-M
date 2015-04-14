@@ -2,8 +2,8 @@
 <load target="js/mboard.js" />
 <div class="bd">
 	<div class="ms_hx">
-		<h2 class="ms ms_bred ms_font_xl"><i class="xe-wastebasket ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
-		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
+		<h2 class="ms ms_bred ms_font_xl"><i class="xi-trash ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
+		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xi-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
 	</div>
 	<form action="./" method="get" class="ff ms_font_m" onsubmit="return procFilter(this, delete_document)">
 		<input type="hidden" name="mid" value="{$mid}" />

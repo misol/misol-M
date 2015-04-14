@@ -2,8 +2,8 @@
 <load target="js/mboard.js" />
 <div class="bd">
 	<div class="ms_hx">
-		<h2 class="ms ms_bred ms_font_xl"><i class="xe-wastebasket ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
-		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xe-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
+		<h2 class="ms ms_bred ms_font_xl"><i class="xi-trash ms_vertical_align"> </i> {$lang->cmd_delete}</h2>
+		<div class="ms_pa_r0"><a href="#" onclick="window.history.back();return false;" class="write ms_btn ms_font_l"><i class="xi-arrow-left ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->cmd_back}</span></a></div>
 	</div>
 	<div class="rd_bt_re" cond="$oComment->isExists()">
 		<ul>
@@ -11,12 +11,12 @@
 				<div class="ms_cmt_top">
 					<div class="fbMeta">
 						<img cond="$oComment->getProfileImage()" src="{$oComment->getProfileImage()}" alt="Profile" class="profile" />
-						<i cond="!$oComment->getProfileImage()" class="xe-man profile"></i>
+						<i cond="!$oComment->getProfileImage()" class="xi-user profile"></i>
 						<span cond="!$oComment->getProfileImage()" class="profile"></span>
 						<h3 class="author ms_font_xs">
-							<a cond="!$oComment->member_srl && $oComment->homepage" href="{$oComment->getHomepageUrl()}"><i class="xe-link"></i> {$oComment->getNickName()}</a>
-							<strong cond="!$oComment->member_srl && !$oComment->homepage"><i class="xe-user"></i> {$oComment->getNickName()}</strong>
-							<a cond="$oComment->member_srl" href="#popup_menu_area" class="member_{$oComment->member_srl}" onclick="return false"><i class="xe-user"></i> {$oComment->getNickName()}</a>
+							<a cond="!$oComment->member_srl && $oComment->homepage" href="{$oComment->getHomepageUrl()}"><i class="xi-link"></i> {$oComment->getNickName()}</a>
+							<strong cond="!$oComment->member_srl && !$oComment->homepage"><i class="xi-user"></i> {$oComment->getNickName()}</strong>
+							<a cond="$oComment->member_srl" href="#popup_menu_area" class="member_{$oComment->member_srl}" onclick="return false"><i class="xi-user"></i> {$oComment->getNickName()}</a>
 						</h3>
 					</div>
 					<div class="ms_cmt_cont">
@@ -25,8 +25,8 @@
 				</div>
 				<div class="ms_cmt_bottom">
 					<div class="ms_btm_meta">
-						<p class="time ms_font_xs"><i class="xe-time-point"></i> {$oComment->getRegdate('y.m.d H:i')}</p>
-						<span class="vote" cond="$oComment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xe-medal ms_tred">{$oComment->get('voted_count')?$oComment->get('voted_count'):0}</i></span>
+						<p class="time ms_font_xs"><i class="xi-time"></i> {$oComment->getRegdate('y.m.d H:i')}</p>
+						<span class="vote" cond="$oComment->get('voted_count')!=0">{$lang->cmd_vote} <i class="xi-medal ms_tred">{$oComment->get('voted_count')?$oComment->get('voted_count'):0}</i></span>
 					</div>
 				</div>
 			</li>
