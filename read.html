@@ -25,8 +25,8 @@
 	<div class="ms_co">
 		<!--@if($oDocument->isExtraVarsExists())-->
 			{@ $_extra_vars = $oDocument->getExtraVars(); }
-			<dl class="xv ms_font_xs">
-			<!--@foreach($_extra_vars as $key => $val)--><dt>{$val->name}</dt><dd><i class="xi-link"|cond="$val->type==='homepage'" class="xi-at"|cond="$val->type==='email_address'" class="xi-compass"|cond="$val->type==='kr_zip'" class="xi-phone"|cond="$val->type==='tel'" class="xi-calendar"|cond="$val->type==='date'"></i> {$val->getValueHTML()}</dd><!--@end-->
+			<dl class="xv ms_font_s">
+			<!--@foreach($_extra_vars as $key => $val)--><dt>{$val->name}</dt><dd><i class="xi-link xi-x"|cond="$val->type==='homepage'" class="xi-at xi-x"|cond="$val->type==='email_address'" class="xi-compass xi-x"|cond="$val->type==='kr_zip'" class="xi-phone xi-x"|cond="$val->type==='tel'" class="xi-calendar xi-x"|cond="$val->type==='date'"></i> {$val->getValueHTML()}</dd><!--@end-->
 			</dl>
 		<!--@end-->
 		{$oDocument->getContent(false)}
@@ -57,16 +57,16 @@
 			<h3 class="ms_font_s">{$lang->ms_share} <i class="xi-share-alt"></i></h3>
 			<ul class="rd_bt_rg ms_font_xs">
 				<li>
-					<a href="https://www.facebook.com/sharer.php?u={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;t={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-facebook ms_tred"></i> {$lang->facebook} <span id="ms_facebook_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
+					<a href="https://www.facebook.com/sharer.php?u={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;t={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-facebook xi-x ms_tred"></i> {$lang->facebook} <span id="ms_facebook_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
 				</li>
 				<li>
-					<a href="https://twitter.com/share?url={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;text={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-twitter ms_tred"></i> {$lang->twitter} <span id="ms_twitter_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
+					<a href="https://twitter.com/share?url={rawurlencode(substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}&amp;text={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}" onclick="window.open(this.href);return false;"><i class="xi-twitter xi-x ms_tred"></i> {$lang->twitter} <span id="ms_twitter_count" style="display:none;"><i class="xi-star ms_tred"></i></span></a>
 				</li>
 				<li id="ms_kakaostory_link">
-					<a href="#" onclick="msKakaoStoryLink('{$oDocument->getPermanentUrl()}','{rawurlencode(htmlspecialchars_decode($module_info->browser_title))}','{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}','{rawurlencode(htmlspecialchars_decode($oDocument->getSummary()))}'<!--@if($oDocument->thumbnailExists(700,500))-->,'{$oDocument->getThumbnail(700,500)}'<!--@end-->);return false;"><i class="xi-kakaostory ms_tred"></i> {$lang->kakaostory}</a>
+					<a href="#" onclick="msKakaoStoryLink('{$oDocument->getPermanentUrl()}','{rawurlencode(htmlspecialchars_decode($module_info->browser_title))}','{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())))}','{rawurlencode(htmlspecialchars_decode($oDocument->getSummary()))}'<!--@if($oDocument->thumbnailExists(700,500))-->,'{$oDocument->getThumbnail(700,500)}'<!--@end-->);return false;"><i class="xi-kakaostory xi-x ms_tred"></i> {$lang->kakaostory}</a>
 				</li>
 				<li id="ms_kakao_link" cond="$module_info->kakaoapi_key">
-					<a id="ms_kakao-link-btn" href="#"><i class="xi-kakaotalk ms_tred"></i> {$lang->kakaotalk}</a>
+					<a id="ms_kakao-link-btn" href="#"><i class="xi-kakaotalk xi-x ms_tred"></i> {$lang->kakaotalk}</a>
 					<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 					<script>
 						Kakao.init('{$module_info->kakaoapi_key}');
@@ -95,10 +95,10 @@
 					</script>
 				</li>
 				<li>
-					<a href="https://line.me/R/msg/text/?{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle()))."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}" onclick="window.open(this.href);return false;"><i class="xi-line-messenger ms_tred"></i> {$lang->ms_lineapp}</a>
+					<a href="https://line.me/R/msg/text/?{rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle()))."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}" onclick="window.open(this.href);return false;"><i class="xi-line-messenger xi-x ms_tred"></i> {$lang->ms_lineapp}</a>
 				</li>
 				<li>
-					<a href="mailto:?body={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())."\n".$oDocument->getSummary())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}"><i class="xi-envelope-open ms_tred"></i> {$lang->cmd_send_email}</a>
+					<a href="mailto:?body={rawurlencode(htmlspecialchars_decode(strip_tags($oDocument->getTitle())."\n".$oDocument->getSummary())."\n".substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl))}"><i class="xi-envelope-open xi-x ms_tred"></i> {$lang->cmd_send_email}</a>
 				</li>
 				<script>
 					msGetSNSCount('facebook','{substr(Context::getRequestUri(),0,-1).getUrl('','mid',$mid,'document_srl',$oDocument->document_srl)}');
