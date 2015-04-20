@@ -25,11 +25,8 @@
 	<div class="ms_co">
 		<!--@if($oDocument->isExtraVarsExists())-->
 			{@ $_extra_vars = $oDocument->getExtraVars(); }
-			<dl class="xv">
-			<!--@foreach($_extra_vars as $key => $val)-->
-				<dt>{$val->name}</dt>
-				<dd>{$val->getValueHTML()}</dd>
-			<!--@end-->
+			<dl class="xv ms_font_xs">
+			<!--@foreach($_extra_vars as $key => $val)--><dt>{$val->name}</dt><dd><i class="xi-link"|cond="$val->type==='homepage'" class="xi-at"|cond="$val->type==='email_address'" class="xi-compass"|cond="$val->type==='kr_zip'" class="xi-phone"|cond="$val->type==='tel'" class="xi-calendar"|cond="$val->type==='date'"></i> {$val->getValueHTML()}</dd><!--@end-->
 			</dl>
 		<!--@end-->
 		{$oDocument->getContent(false)}
@@ -113,7 +110,7 @@
 	<div id="comment"></div>
 	<!--@if($oDocument->getCommentCount())-->
 	<div class="rd_bt_re">
-		<h3 class="ms_font_s">{$lang->comment} <i class="xi-comment-double"> {$oDocument->getCommentCount()}</i></h3> 
+		<h3 class="ms_font_s">{$lang->comment} <i class="xi-comments"> {$oDocument->getCommentCount()}</i></h3> 
 		<div class="ms_pa_r0" cond="$grant->write_comment && $oDocument->isEnableComment()"><a href="#write_comment" class="write ms_btn ms_font_xs"><i class="xi-plus ms_vertical_align"> {$lang->write_comment}</i></a></div>
 		<ul>
 			<li loop="$oDocument->getComments()=>$key,$comment" class="fbItem"|cond="!$comment->get('depth')" class="fbItem indent"|cond="$comment->get('depth')" style="margin-left:{20*$comment->get('depth')}px;"|cond="$comment->get('depth') > 0 && $comment->get('depth')<=8" style="margin-left:180px;"|cond="($comment->get('depth')>8)" id="comment_{$comment->comment_srl}">
@@ -161,18 +158,18 @@
 		</ul>
 		<div class="pn ms_font_m" cond="$oDocument->comment_page_navigation">
 			<!--@if($oDocument->comment_page_navigation->cur_page != 1)-->
-			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page-1)}#comment" class="prev">{$lang->cmd_prev}</a> 
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page-1)}#comment" class="prev"><i class="xi-angle-left"></i>{$lang->cmd_prev}</a> 
 			<!--@endif-->
 			<strong>{$oDocument->comment_page_navigation->cur_page} / {$oDocument->comment_page_navigation->last_page}</strong>
 			<!--@if($oDocument->comment_page_navigation->cur_page != $oDocument->comment_page_navigation->last_page)-->
-			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page+1)}#comment" class="next">{$lang->cmd_next}</a>
+			<a href="{getUrl('cpage',$oDocument->comment_page_navigation->cur_page+1)}#comment" class="next">{$lang->cmd_next}<i class="xi-angle-right"></i></a>
 			<!--@endif-->
 		</div>
 	</div>
 	<!--@endif-->
 	<!--@if($grant->write_comment && $oDocument->isEnableComment() )-->
 	<div class="rd_bt_re">
-		<h3 id="write_comment" class="ms_font_s"><i class="xi-comments"></i> {$lang->write_comment}</h3>
+		<h3 id="write_comment" class="ms_font_s"><i class="xi-message"></i> {$lang->write_comment}</h3>
 		<form action="./" method="post" class="ff ms_font_m" onsubmit="return procFilter(this, insert_comment);">
 			<input type="hidden" name="mid" value="{$mid}" />
 			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />

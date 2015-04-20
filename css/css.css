@@ -127,7 +127,7 @@ h3.ms{
 .ff label+input[type=text],
 .ff label+input[type=email],
 .ff label+input[type=url],
-.ff label+input[type=password],
+.ff label+input[type=password],.ff input.tel,
 .ff label+textarea,
 .ff label+select {
 	display: block;
@@ -145,12 +145,17 @@ h3.ms{
 .ff label+input[type=text],
 .ff label+input[type=email],
 .ff label+input[type=url],
-.ff label+input[type=password],
+.ff label+input[type=password],.ff input.tel,
 .ff label+textarea {
 	padding: 5px;
 	-webkit-appearance: none;
 	text-align:left;
 	padding: 3px;
+}
+
+.ff label+input[type=text].tel,.ff input.tel{
+	width:33%;
+	float:left;
 }
 /* List */
 .lt {
@@ -290,26 +295,8 @@ h3.ms{
 	color: #333;
 	text-decoration: none;
 }
-.pn .prev:before {
-	content: "";
-	display: inline-block;
-	width: 0;
-	height: 0;
-	margin: 0 6px 0 0;
-	border: 6px solid;
-	border-color: transparent;
-	border-right-color: #999;
-}
-.pn .next:after {
-	content: "";
-	display: inline-block;
-	width: 0;
-	height: 0;
-	margin: 0 0 0 6px;
-	border: 6px solid;
-	border-color: transparent;
-	border-left-color: #999;
-}
+
+
 /* Search */
 .sh {
 	text-align: center;
@@ -354,11 +341,11 @@ h3.ms{
 	margin: 0;
 	clear:both;
 }
-.ms_hx>.ex .auth, .ms_hx>.ex .com, .ms_hx>.ex .time, .ms_hx>.ex>.ms_magnifier{
+.ms_hx>.ex .auth, .ms_hx>.ex .com, .ms_hx>.ex .time, .ms_hx>.ex>.ms_magnifier,.ms_co dl.xv>*{
 	display:inline-block;
 	box-sizing: border-box;
 	width:30%;
-	height:33px;line-height:100%;
+	height:34px;line-height:100%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -572,7 +559,7 @@ h3.ms{
 	position: absolute;
 	top: 10px;
 	right: 10px;
-	content: "&#xe626;";
+	content: "\e626";
 	color: #888;
 	font-size: 18px;
 	font-weight: bold;
@@ -607,10 +594,17 @@ h3.ms{
     font-style: normal;
 }
 .gn em:before {
-	content: "&#xe894; ";
+	content: "\e894 ";
 	font-family: XEIcon;
 	color: #f44336;
 	font-size: 12px;
+}
+.ms_co dl.xv{
+	border-top: 1px solid #bdbdbd;
+}
+.ms_co dl.xv dd{
+	border-right: 0;
+	width: 70%;
 }
 @media screen and (max-width: 319px) {
 	.sh>form>*{
