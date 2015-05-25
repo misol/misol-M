@@ -203,6 +203,6 @@
 <!--@end-->
 <div class="btm_tools">
 	<a href="{getUrl('','vid','cpage','',$vid,'mid',$mid,'mobile',$mobile)}" class="ms_btn ms_font_m"><i class="xi-contents-grid ms_vertical_align">{$lang->cmd_list}</i></a>
-	<!--@if(strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))--><a cond="$oDocument->isEditable()" class="ms_btn ms_font_m" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class="xi-wrench ms_vertical_align">{$lang->cmd_modify}</i></a><!--@end-->
+	<a cond="$oDocument->isEditable()" class="ms_btn ms_font_m" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}"><i class="xi-wrench ms_vertical_align">{$lang->cmd_modify}</i></a>
 	<a cond="$oDocument->isEditable()" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','','cpage','')}" class="ms_btn ms_font_m write"><i class="xi-trash ms_vertical_align">{$lang->cmd_delete}</i></a>
 </div>

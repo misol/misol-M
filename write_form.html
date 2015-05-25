@@ -6,8 +6,8 @@
 		<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','', 'act','','cpage','')}" class="write ms_btn ms_font_l"><i class="xi-contents-grid ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
 	</div>
 	<form action="./" method="post" class="ff" id="ms_write" onsubmit="return procFilter(this, insert)">
-	<input type="hidden" name="mid" value="{$mid}" />
-	<input type="hidden" name="document_srl" value="{$document_srl}" />
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="document_srl" value="{$document_srl}" />
 		<ul class="ms_font_m">
 			<!--@if($module_info->use_category == "Y")-->
 			<li>
@@ -26,16 +26,20 @@
 				<input name="title" type="text" id="nTitle" value="{htmlspecialchars($oDocument->getTitleText())}" />
 			</li>
 			<!--@if(count($extra_keys))-->
-			<!--@foreach($extra_keys as $key=> $val)-->
-			<li class="exvar">
-				<label for="ex_{$val->name}" form="ms_write">{$val->name} <!--@if($val->is_required=="Y")-->*<!--@end--></label>
-				{$val->getFormHTML()}
-			</li>
-			<!--@endforeach-->
+				<!--@foreach($extra_keys as $key=> $val)-->
+				<li class="exvar">
+					<label for="ex_{$val->name}" form="ms_write">{$val->name} <!--@if($val->is_required=="Y")-->*<!--@end--></label>
+					{$val->getFormHTML()}
+				</li>
+				<!--@endforeach-->
 			<!--@end-->
 			<li>
 				<label for="nText" form="ms_write">{$lang->content}</label>
-				<textarea name="content" rows="8" cols="42" id="nText"><!--@if($oDocument->get('document_srl') && strip_tags($oDocument->get('content'),'<br>')==$oDocument->get('content'))-->{str_replace(array("\r\n","\n",'<br>','<br />','<','>'),array('','',"\n","\n",'&lt;','&gt;'),$oDocument->get('content'))}<!--@end--></textarea>
+				<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+				<input type="hidden" name="use_html" value="Y" />
+				<div class="write_editor">
+					{$oDocument->getEditor()}
+				</div>
 			</li>
 			<li>
 				<label for="nTag" form="ms_write">{$lang->tag}</label>
