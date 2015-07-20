@@ -5,14 +5,14 @@
 		<h2 class="ms ms_bred ms_font_xl"><span class="ms_vertical_align"><i class="xi-pen"></i> {$lang->cmd_write}</span></h2>
 		<div class="ms_pa_r0"><a href="{getUrl('document_srl','','category','','page','', 'act','','cpage','')}" class="write ms_btn ms_font_l"><i class="xi-contents-grid ms_vertical_align"></i><span class="ms_text_minus_indent">{$module_info->browser_title}</span></a></div>
 	</div>
-	<form action="./" method="post" class="ff" id="ms_write" onsubmit="return procFilter(this, insert)">
+	<form action="./" method="post" class="ff" id="ms_write">
 		<input type="hidden" name="mid" value="{$mid}" />
 		<input type="hidden" name="document_srl" value="{$document_srl}" />
 		<ul class="ms_font_m">
 			<!--@if($module_info->use_category == "Y")-->
 			<li>
 				<label for="nCategory" form="ms_write">{$lang->category}</label>
-				<select name="category_srl" id="nCategory">
+				<select name="category_srl" id="nCategory" required="required">
 					<!--@foreach($category_list as $val)-->	
 					<option <!--@if(!$val->grant)-->disabled="disabled"<!--@endif--> value="{$val->category_srl}" <!--@if($val->grant&&$val->selected||$val->category_srl==$oDocument->get('category_srl'))-->selected="selected"<!--@endif-->>
 					{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} ({$val->document_count})
@@ -35,8 +35,9 @@
 			<!--@end-->
 			<li>
 				<label for="nText" form="ms_write">{$lang->content}</label>
-				<input type="hidden" name="content" value="{$oDocument->getContentText()}" />
+				<input type="hidden" class="write_content" name="content" value="{str_replace(array("\r\n","\n"),array('',''),$oDocument->getContentText())}" />
 				<input type="hidden" name="use_html" value="Y" />
+				<input type="hidden" name="use_editor" value="Y" />
 				<div class="write_editor">
 					{$oDocument->getEditor()}
 				</div>
@@ -48,11 +49,11 @@
 			<!--@if(!$is_logged)-->
 			<li>
 				<label for="uName" form="ms_write">{$lang->writer}</label>
-				<input name="nick_name" type="text" id="uName" value="{htmlspecialchars($oDocument->get('nick_name'))}" />
+				<input name="nick_name" type="text" id="uName" value="{htmlspecialchars($oDocument->get('nick_name'))}" required="required" />
 			</li>
 			<li>
 				<label for="uPw" form="ms_write">{$lang->password}</label>
-				<input name="password" type="password" id="uPw" />
+				<input name="password" type="password" id="uPw" required="required" />
 			</li>
 			<li>
 				<label for="uSite" form="ms_write">{$lang->homepage}</label>
@@ -82,4 +83,31 @@
 			<button type="submit" class="ms_btn ms_bredA700 ms_font_m">{$lang->cmd_registration}</button>
 		</div>
 </form>
+<script>
+/* 줄 바꿈에 br 태그를 넣어버리는 XE Core 회피를 위해서 line-break를 모두 지움 */
+jQuery(window).load(function($){
+	jQuery("#ms_write").submit(function( event ) {
+		var contents = jQuery("[name='content']",this).val().replace(/(\r\n|\n|\r)/gm,'');
+		jQuery("[name='content']",this).val(contents);
+
+		var params = [], data = jQuery(this).serializeArray();
+		jQuery.each(data, function(i, field) {
+			var v = jQuery.trim(field.value), n = field.name;
+			if(!v || !n) return true;
+
+			if(/\[\]$/.test(n)) n = n.replace(/\[\]$/, '');
+			if(params[n]) {
+				params[n] += '|@|'+v;
+			} else {
+				params[n] = field.value;
+			}
+		});
+		var response_tags = ['error','message','mid','document_srl','category_srl'];
+
+		exec_xml('board', 'procBoardInsertDocument', params, function(a) { completeDocumentInserted(a); }, response_tags, params);
+		return false;
+	});
+});
+</script>
+
 </div>

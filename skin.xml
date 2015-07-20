@@ -10,13 +10,13 @@
 		misol's mobile board skin.
 		Based on the basic mobile skin, misol enhance the usability and shape.
 	</description>
-	<version>1.3</version>
-	<date>2015-04-27</date>
-	<author email_address="misol.kr@gmail.com">
+	<version>1.5</version>
+	<date>2015-07-20</date>
+	<author email_address="misol.kr@gmail.com" link="https://github.com/misol">
 		<name xml:lang="ko">김민수(misol)</name>
 		<name xml:lang="en">MinSoo Kim(misol)</name>
 	</author>
-	<author email_address="developers@xpressengine.com" link="http://www.xpressengine.com/">
+	<author email_address="developers@xpressengine.com" link="https://www.xpressengine.com/">
 		<name xml:lang="ko">NAVER</name>
 		<name xml:lang="en">NAVER</name>
 	</author>
